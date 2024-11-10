@@ -4,25 +4,18 @@
  */
 
 #include "Servo_motor_impl.h"
+#include "LCDDisplayI2C.h"
 
 ServoMotor* motor;
+LCDDisplayI2C* lcd;
 
 void setup() {
   Serial.begin(9600);
   motor = new ServoMotorImpl(9);
+  lcd = new LCDDisplayI2C();
 }
 
 void loop() {
-  motor->on();
-  motor->setPosition(90);
-  Serial.println("90");
-  delay(1000);
-  motor->setPosition(0);
-  Serial.println("0");
-  delay(1000);
-  motor->setPosition(-90);
-  Serial.println("-90");
-  delay(1000);
-  motor->off();
+  lcd->setMessage("Ciao");
   delay(1000);
 }
