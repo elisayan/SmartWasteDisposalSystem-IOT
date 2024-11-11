@@ -15,6 +15,15 @@ plugins {
     id("org.danilopianini.gradle-java-qa") version "1.75.0"
 }
 
+sourceSets.getByName("main") {
+    java.srcDir("src/arduino")
+    java.srcDir("src/pc")
+}
+
+//sourceSets.getByName("resources") {
+//    java.srcDir("src/pc/src/main/resources")
+//}
+
 repositories {
     mavenCentral()
 }

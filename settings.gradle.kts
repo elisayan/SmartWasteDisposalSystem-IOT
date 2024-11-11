@@ -7,4 +7,6 @@
  * in the user manual at https://docs.gradle.org/5.5.1/userguide/multi_project_builds.html
  */
 
-rootProject.name = "sample-javafx-project"
+rootProject.name = "SmartWasteDisposalSystem-IOT"
+
+include("pc")
