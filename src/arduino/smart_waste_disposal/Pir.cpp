@@ -26,4 +26,3 @@ void Pir::updateSyncTime(long time){
 long Pir::getLastSyncTime(){
 	return lastTimeSync;
 }
-
