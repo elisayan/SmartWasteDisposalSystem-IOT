@@ -4,7 +4,7 @@
  */
 
 #include "Config.h"
-#include "Servo_motor_impl.h"
+#include "ServoMotorImpl.h"
 #include "LCDDisplayI2C.h"
 #include "ButtonImpl.h"
 #include "Led.h"
@@ -12,6 +12,7 @@
 #include "Sonar.h"
 #include "TempSensorLM35.h"
 #include "Scheduler.h"
+#include "ReadyTask.h"
 
 Scheduler sched;
 
@@ -27,17 +28,11 @@ TempSensorLM35* temp;
 
 void setup() {
   Serial.begin(9600);
-  motor = new ServoMotorImpl(MOTOR);
-  lcd = new LCDDisplayI2C();
-  button1 = new ButtonImpl(BUTTON1);
-  button2 = new ButtonImpl(BUTTON2);
-  led1 = new Led(LED1);
-  led2 = new Led(LED2);
-  pir = new Pir(PIR);
-  sonar = new Sonar(SONAR_ECHO, SONAR_TRIG);
-  temp = new TempSensorLM35(LM35);
-
   sched.init(50);
+
+  Task* ready = new ReadyTask(LED1, MOTOR);
+  ready->init(500);
+  sched.addTask(ready);
 }
 
 void loop() {

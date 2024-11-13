@@ -2,18 +2,21 @@
 #define __READYTASK__
 
 #include "Task.h"
-#include "Light.h"
+#include "Led.h"
+#include "LCDDisplayI2C.h"
+#include "ServoMotorImpl.h"
 
 class ReadyTask : public Task {
-  int pin;
-  Light* led;
-  enum { ON,
-         OFF } state;
+  int pinLed1;
+  int pinMotor;
+  Light* led1;
+  LCDDisplayI2C* lcd;
+  ServoMotorImpl* motor;
 
 public:
   ReadyTask(int pinLed1, int pinMotor);
   void init(int period);
   void tick();
-}
+};
 
 #endif
