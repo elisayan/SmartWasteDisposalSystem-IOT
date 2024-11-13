@@ -11,6 +11,9 @@
 #include "Pir.h"
 #include "Sonar.h"
 #include "TempSensorLM35.h"
+#include "Scheduler.h"
+
+Scheduler sched;
 
 ServoMotor* motor;
 LCDDisplayI2C* lcd;
@@ -33,9 +36,10 @@ void setup() {
   pir = new Pir(PIR);
   sonar = new Sonar(SONAR_ECHO, SONAR_TRIG);
   temp = new TempSensorLM35(LM35);
+
+  sched.init(50);
 }
 
 void loop() {
-  lcd->setMessage("Ciao");
-  delay(1000);
+  sched.schedule();
 }
