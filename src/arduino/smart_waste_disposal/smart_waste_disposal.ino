@@ -4,27 +4,10 @@
  */
 
 #include "Config.h"
-#include "ServoMotorImpl.h"
-#include "LCDDisplayI2C.h"
-#include "ButtonImpl.h"
-#include "Led.h"
-#include "Pir.h"
-#include "Sonar.h"
-#include "TempSensorLM35.h"
 #include "Scheduler.h"
 #include "ReadyTask.h"
 
 Scheduler sched;
-
-ServoMotor* motor;
-LCDDisplayI2C* lcd;
-ButtonImpl* button1;
-ButtonImpl* button2;
-Led* led1;
-Led* led2;
-Pir* pir;
-Sonar* sonar;
-TempSensorLM35* temp;
 
 void setup() {
   Serial.begin(9600);
