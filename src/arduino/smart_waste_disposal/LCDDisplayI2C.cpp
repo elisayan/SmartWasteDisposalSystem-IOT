@@ -10,3 +10,27 @@ void LCDDisplayI2C::setMessage(char* text) {
   lcd.setCursor(0, 0);
   lcd.print(text);
 }
+
+void LCDDisplayI2C::enterWaste() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("PRESS OPEN TO ENTER WASTE");
+}
+
+void LCDDisplayI2C::pressClose() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("PRESS CLOSE WHEN DONE");
+}
+
+void LCDDisplayI2C::wasteReceived() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("WASTE RECEIVED");
+}
+
+void LCDDisplayI2C::containerFull() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("CONTAINER FULL");
+}

@@ -8,6 +8,10 @@ class LCDDisplayI2C : public LCDDisplay {
 public:
   LCDDisplayI2C();
   void setMessage(char* text);
+  void enterWaste();
+  void pressClose();
+  void wasteReceived();
+  void containerFull();
 
 private:
   LiquidCrystal_I2C lcd;
