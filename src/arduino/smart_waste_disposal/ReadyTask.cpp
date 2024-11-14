@@ -16,6 +16,6 @@ void ReadyTask::tick(){
   motor->on();
   led1->switchOn();
   motor->setPosition(0);
-  lcd->setMessage("PRESS OPEN TO ENTER WASTE");
+  lcd->enterWaste();
   //motor->off();
 }
