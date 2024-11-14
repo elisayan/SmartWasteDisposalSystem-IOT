@@ -9,7 +9,7 @@
 
 #define MOTOR 9
 
-#define PIR 6
+#define PIR 7
 
 #define SONAR_TRIG 12
 #define SONAR_ECHO 13
