@@ -12,6 +12,7 @@
 
 class UserDetectionTask : public Task {
   int pirPin;
+  Pir* pir;
 
 public:
   UserDetectionTask(int pirPin);
