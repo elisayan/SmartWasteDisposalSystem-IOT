@@ -1,21 +1,28 @@
 #include "ReadyTask.h"
 
-ReadyTask::ReadyTask(int pinLed1, int pinMotor) {
-  this->pinLed1 = pinLed1;
-  this->pinMotor = pinMotor;
+ReadyTask::ReadyTask(Led* led1, ServoMotor* motor, LCDDisplayI2C* lcd) {
+  this->led1 = led1;
+  this->motor = motor;
+  this->lcd = lcd;
 }
 
-void ReadyTask::init(int period){
+void ReadyTask::init(int period) {
   Task::init(period);
-  led1 = new Led(pinLed1);
-  lcd = new LCDDisplayI2C();
-  motor = new ServoMotorImpl(pinMotor);
+  state = IDLE;
 }
 
-void ReadyTask::tick(){
-  motor->on();
-  led1->switchOn();
-  motor->setPosition(0);
-  lcd->enterWaste();
-  //motor->off();
+void ReadyTask::tick() {
+  switch (state) {
+    case IDLE:
+      motor->on();
+      led1->switchOn();
+      motor->setPosition(0);
+      lcd->enterWaste();
+      //motor->off();
+      break;
+
+    case SLEEP:
+
+      break;
+  }
 }

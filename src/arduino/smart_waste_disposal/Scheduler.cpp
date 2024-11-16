@@ -27,7 +27,9 @@ bool Scheduler::addTask(Task* task){
 }
   
 void Scheduler::schedule(){   
-  while (!timerFlag){}
+  while (!timerFlag){
+    //Serial.println("timerFlag");
+  }
   timerFlag = false;
 
   for (int i = 0; i < nTasks; i++){
@@ -44,4 +46,5 @@ void Scheduler::schedule(){
       }
     }
   }
+  Serial.println("loop");
 }

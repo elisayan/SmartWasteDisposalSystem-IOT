@@ -4,17 +4,19 @@
 #include "Task.h"
 #include "Led.h"
 #include "LCDDisplayI2C.h"
-#include "ServoMotorImpl.h"
+#include "ServoMotor.h"
 
 class ReadyTask : public Task {
   int pinLed1;
   int pinMotor;
-  Light* led1;
+  Led* led1;
   LCDDisplayI2C* lcd;
-  ServoMotorImpl* motor;
+  ServoMotor* motor;
+  enum { IDLE,
+         SLEEP } state;
 
 public:
-  ReadyTask(int pinLed1, int pinMotor);
+  ReadyTask(Led* led1, ServoMotor* motor, LCDDisplayI2C* lcd);
   void init(int period);
   void tick();
 };
