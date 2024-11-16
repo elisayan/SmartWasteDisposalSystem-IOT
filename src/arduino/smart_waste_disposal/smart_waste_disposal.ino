@@ -40,7 +40,7 @@ void setup() {
 
   sched.init(50);
 
-  Task* ready = new ReadyTask(led1, motor, lcd);
+  Task* ready = new ReadyTask(led1, led2, motor, lcd, button1, button2, pir, sonar, temp);
   ready->init(500);
   sched.addTask(ready);
 }
