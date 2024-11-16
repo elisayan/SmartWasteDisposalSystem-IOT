@@ -2,8 +2,6 @@
 #include <Arduino.h>
 #include <avr/sleep.h>
 
-#define TIME1 5000  // Timeout for USER_DETECTED (5 seconds)
-
 ReadyTask::ReadyTask(Led* led1, Led* led2, ServoMotor* motor, LCDDisplayI2C* lcd, ButtonImpl* button1, ButtonImpl* button2, Pir* pir, Sonar* sonar, TempSensorLM35* temp) {
   this->led1 = led1;
   this->led2 = led2;
@@ -64,5 +62,5 @@ void ReadyTask::tick() {
 }
 
 bool ReadyTask::isSleepTimeOut() {
-  return millis() - startTime >= TIME1;
+  return millis() - startTime >= TIME_SLEEP;
 }

@@ -16,7 +16,6 @@
 
 #define LM35 A0
 
-#define TIME2  8000   // Timeout for WAITING_FOR_WASTE (8 seconds)
 #define TIME3  15000  // Duration for EMPTYING (15 seconds)
 
 #define MAX_TEMPERATURE 26

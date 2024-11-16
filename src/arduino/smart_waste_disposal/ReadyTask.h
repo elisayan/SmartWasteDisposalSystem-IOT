@@ -10,6 +10,8 @@
 #include "Sonar.h"
 #include "TempSensorLM35.h"
 
+#define TIME_SLEEP 5000  // Timeout for USER_DETECTED (5 seconds)
+
 class ReadyTask : public Task {
   Led* led1;
   Led* led2;
@@ -17,7 +19,7 @@ class ReadyTask : public Task {
   ServoMotor* motor;
   ButtonImpl* button1;
   ButtonImpl* button2;
-  Pir* pir; 
+  Pir* pir;
   Sonar* sonar;
   TempSensorLM35* temp;
 

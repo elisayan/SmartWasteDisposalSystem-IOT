@@ -13,6 +13,7 @@
 #include "TempSensorLM35.h"
 #include "Scheduler.h"
 #include "ReadyTask.h"
+#include "ReceivingWasteTask.h"
 
 Scheduler sched;
 
@@ -41,8 +42,12 @@ void setup() {
   sched.init(50);
 
   Task* ready = new ReadyTask(led1, led2, motor, lcd, button1, button2, pir, sonar, temp);
-  ready->init(500);
+  ready->init(100);
   sched.addTask(ready);
+
+  Task* receive = new ReceivingWasteTask(motor, lcd, button2);
+  receive->init(100);
+  sched.addTask(receive);
 }
 
 void loop() {
