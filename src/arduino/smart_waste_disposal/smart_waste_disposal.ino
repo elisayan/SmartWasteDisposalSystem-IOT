@@ -45,7 +45,7 @@ void setup() {
   ready->init(100);
   sched.addTask(ready);
 
-  Task* receive = new ReceivingWasteTask(motor, lcd, button2);
+  Task* receive = new ReceivingWasteTask(motor, lcd, button2, sonar);
   receive->init(100);
   sched.addTask(receive);
 }
