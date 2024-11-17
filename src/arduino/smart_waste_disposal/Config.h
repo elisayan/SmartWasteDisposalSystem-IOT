@@ -16,7 +16,7 @@
 
 #define LM35 A0
 
-#define TIME3  15000  // Duration for EMPTYING (15 seconds)
+#define TIME3  15000
 
 #define MAX_TEMPERATURE 26
 

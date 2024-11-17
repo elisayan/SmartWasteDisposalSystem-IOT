@@ -2,17 +2,42 @@
 #define __SMART_WASTE_PLANT__
 
 #include <Arduino.h>
-#include "Led.h"
-#include "ButtonImpl.h"
-#include "Sonar.h"
-#include "Pir.h"
-#include "TempSensor.h"
 #include "ServoMotor.h"
+#include "LCDDisplayI2C.h"
+#include "ButtonImpl.h"
+#include "Led.h"
+#include "Pir.h"
+#include "Sonar.h"
+#include "TempSensorLM35.h"
 
 class SmartWastePlant {
 public:
   SmartWastePlant();
   void init();
+
+  void openDoor();
+  void closeDoor();
+  void setAvailable();
+  void alarmOn();
+
+  void setIdle();
+  void prepareToSleep();
+  void resumeFromSleeping();
+
+  void readyForReceiveWaste();
+  bool isReadyForReceiveWaste();
+  bool isReceivingWaste();
+  void wasteReceived();
+
+  bool isIdle();
+  
+  bool isReadyForEmpty();
+  bool isEmptying();
+  bool isReadyForRestore();
+  bool isInMaintenance();
+
+
+  void maintenanceDone();
 
 
 private:
@@ -25,16 +50,17 @@ private:
          EMPTED,
          READY_FOR_RESTORE,
          MAINTENANCE
-  }
+  } state;
 
+  ServoMotor* pMotor;
+  LCDDisplayI2C* pLcd;
+  ButtonImpl* pOpenButton;
+  ButtonImpl* pCloseButton;
   Led* pLed1;
   Led* pLed2;
-  ButtonImpl* openButton;
-  ButtonImpl* closeButton;
-  Sonar* pSonar;
   Pir* pPir;
-  TempSensor* pTempSensor;
-  ServoMotor* pDoorMotor;
-}
+  Sonar* pSonar;
+  TempSensorLM35* pTemp;
+};
 
 #endif
