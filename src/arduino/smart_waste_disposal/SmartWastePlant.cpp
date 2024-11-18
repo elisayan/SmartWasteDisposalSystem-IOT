@@ -117,3 +117,15 @@ void SmartWastePlant::emptying() {
 void SmartWastePlant::emptied() {
   state = EMPTIED;
 }
+
+double SmartWastePlant::getCurrentWasteDistance() {
+  return pSonar->getDistance();
+}
+
+bool SmartWastePlant::detectedUserPresence() {
+  return pPir->isDetected();
+}
+
+double SmartWastePlant::getCurrentTemperature() {
+  return pTemp->getTemperature();
+}

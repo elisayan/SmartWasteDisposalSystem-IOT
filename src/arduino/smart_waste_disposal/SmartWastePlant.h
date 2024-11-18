@@ -37,14 +37,16 @@ public:
   void emptying();
   void emptied();
 
-
   bool isIdle();
 
-  bool isReadyForRestore();
+  void setInMaintenance();
   bool isInMaintenance();
-
   void maintenanceDone();
+  bool isReadyForRestore();
 
+  double getCurrentWasteDistance();
+  bool detectedUserPresence();
+  double getCurrentTemperature();
 
 private:
   enum { IDLE,
