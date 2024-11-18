@@ -54,6 +54,10 @@ void SmartWastePlant::setIdle() {
   state = IDLE;
 }
 
+bool SmartWastePlant::isIdle() {
+  return state == IDLE;
+}
+
 void SmartWastePlant::prepareToSleep() {
   if (pLed2->isOn()) {
     pLed1->switchOff();
@@ -116,6 +120,22 @@ void SmartWastePlant::emptying() {
 
 void SmartWastePlant::emptied() {
   state = EMPTIED;
+}
+
+void SmartWastePlant::setInMaintenance() {
+  state = MAINTENANCE;
+}
+
+bool SmartWastePlant::isInMaintenance() {
+  return state == MAINTENANCE;
+} 
+
+void SmartWastePlant::maintenanceDone() {
+  state = READY_FOR_RESTORE;
+}
+
+bool SmartWastePlant::isReadyForRestore() {
+  return state == READY_FOR_RESTORE;
 }
 
 double SmartWastePlant::getCurrentWasteDistance() {

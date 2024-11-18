@@ -22,6 +22,7 @@ public:
   void alarmOn();
 
   void setIdle();
+  bool isIdle();
   void prepareToSleep();
   void resumeFromSleeping();
 
@@ -36,8 +37,6 @@ public:
   bool isEmptying();
   void emptying();
   void emptied();
-
-  bool isIdle();
 
   void setInMaintenance();
   bool isInMaintenance();
