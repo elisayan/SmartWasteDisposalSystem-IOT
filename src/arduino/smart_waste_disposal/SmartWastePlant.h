@@ -14,6 +14,7 @@ class SmartWastePlant {
 public:
   SmartWastePlant();
   void init();
+  static void wakeUp();
 
   void openDoor();
   void closeDoor();
@@ -30,7 +31,7 @@ public:
   void wasteReceived();
 
   bool isIdle();
-  
+
   bool isReadyForEmpty();
   bool isEmptying();
   bool isReadyForRestore();

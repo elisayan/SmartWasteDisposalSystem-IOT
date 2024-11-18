@@ -1,7 +1,16 @@
+#include <EnableInterrupt.h>
+#include <avr/sleep.h>
 #include "SmartWastePlant.h"
 #include "Config.h"
 
 SmartWastePlant::SmartWastePlant() {
+  enableInterrupt(MOTOR, wakeUp, RISING);
+  enableInterrupt(BUTTON1, wakeUp, RISING);
+  enableInterrupt(BUTTON2, wakeUp, RISING);
+  enableInterrupt(PIR, wakeUp, RISING);
+  enableInterrupt(SONAR_ECHO, wakeUp, RISING);
+  enableInterrupt(SONAR_TRIG, wakeUp, RISING);
+  enableInterrupt(LM35, wakeUp, RISING);
 }
 
 void SmartWastePlant::init() {
@@ -48,9 +57,23 @@ void SmartWastePlant::prepareToSleep() {
   } else {
     pLed1->switchOn();
   }
-  //TODO sleep code
+  Serial.println("The system will enter in sleep mode in 3 second...");
+  delay(1000);
+  Serial.println("2");
+  delay(1000);
+  Serial.println("1");
+  delay(1000);
+  Serial.flush();
+
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_enable();
+  sleep_mode();
 }
 
 void SmartWastePlant::resumeFromSleeping() {
+  sleep_disable();
+  Serial.println("The system has woken up from sleep mode.");
+}
 
+void SmartWastePlant::wakeUp() {
 }
