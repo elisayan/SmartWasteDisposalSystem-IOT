@@ -35,7 +35,7 @@ public:
   bool isReadyForEmpty();
   bool isEmptying();
   void emptying();
-  void empted();
+  void emptied();
 
 
   bool isIdle();
@@ -53,7 +53,7 @@ private:
          WASTE_RECEIVED,
          READY_FOR_EMPTY,
          EMPTYING,
-         EMPTED,
+         EMPTIED,
          READY_FOR_RESTORE,
          MAINTENANCE
   } state;

@@ -78,7 +78,6 @@ void SmartWastePlant::resumeFromSleeping() {
   Serial.println("The system has woken up from sleep mode.");
 }
 
-
 void SmartWastePlant::readyForReceiveWaste() {
   state = READY_FOR_RECEIVE_WASTE;
 }
@@ -99,4 +98,22 @@ void SmartWastePlant::wasteReceived() {
   state = WASTE_RECEIVED;
 }
 
+void SmartWastePlant::readyForEmpty() {
+  state = READY_FOR_EMPTY;
+}
 
+bool SmartWastePlant::isReadyForEmpty() {
+  return state == READY_FOR_EMPTY;
+}
+
+bool SmartWastePlant::isEmptying() {
+  return state == EMPTYING;
+}
+
+void SmartWastePlant::emptying() {
+  state = EMPTYING;
+}
+
+void SmartWastePlant::emptied() {
+  state = EMPTIED;
+}
