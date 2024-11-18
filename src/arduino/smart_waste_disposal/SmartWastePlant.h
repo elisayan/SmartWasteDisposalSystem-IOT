@@ -28,15 +28,20 @@ public:
   void readyForReceiveWaste();
   bool isReadyForReceiveWaste();
   bool isReceivingWaste();
+  void receivingWaste();
   void wasteReceived();
+
+  void readyForEmpty();
+  bool isReadyForEmpty();
+  bool isEmptying();
+  void emptying();
+  void empted();
+
 
   bool isIdle();
 
-  bool isReadyForEmpty();
-  bool isEmptying();
   bool isReadyForRestore();
   bool isInMaintenance();
-
 
   void maintenanceDone();
 

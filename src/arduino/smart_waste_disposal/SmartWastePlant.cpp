@@ -30,6 +30,9 @@ void SmartWastePlant::init() {
   state = IDLE;
 }
 
+void SmartWastePlant::wakeUp() {
+}
+
 void SmartWastePlant::openDoor() {
   pMotor->on();
   pMotor->setPosition(90);
@@ -75,5 +78,25 @@ void SmartWastePlant::resumeFromSleeping() {
   Serial.println("The system has woken up from sleep mode.");
 }
 
-void SmartWastePlant::wakeUp() {
+
+void SmartWastePlant::readyForReceiveWaste() {
+  state = READY_FOR_RECEIVE_WASTE;
 }
+
+bool SmartWastePlant::isReadyForReceiveWaste() {
+  return state == READY_FOR_RECEIVE_WASTE;
+}
+
+bool SmartWastePlant::isReceivingWaste() {
+  return state == RECEIVING_WASTE;
+}
+
+void SmartWastePlant::receivingWaste() {
+  state = RECEIVING_WASTE;
+}
+
+void SmartWastePlant::wasteReceived() {
+  state = WASTE_RECEIVED;
+}
+
+
