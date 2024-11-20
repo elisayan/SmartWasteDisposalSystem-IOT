@@ -46,9 +46,11 @@ void SmartWastePlant::closeDoor() {
 
 void SmartWastePlant::setAvailable() {
   pLed1->switchOn();
+  pLed2->switchOff();
 }
 
 void SmartWastePlant::alarmOn() {
+  pLed1->switchOff();
   pLed2->switchOn();
 }
 
