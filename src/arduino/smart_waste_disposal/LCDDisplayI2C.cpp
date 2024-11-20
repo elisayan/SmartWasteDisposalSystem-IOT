@@ -5,12 +5,6 @@ LCDDisplayI2C::LCDDisplayI2C() : lcd(0x27, 20, 4) {
   lcd.backlight();
 }
 
-void LCDDisplayI2C::setMessage(char* text) {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print(text);
-}
-
 void LCDDisplayI2C::enterWaste() {
   lcd.clear();
   lcd.setCursor(0, 0);

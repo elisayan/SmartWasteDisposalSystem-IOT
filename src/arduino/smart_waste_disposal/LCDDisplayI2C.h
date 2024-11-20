@@ -2,12 +2,10 @@
 #define __LCD_DISPLAY_I2C__
 
 #include <LiquidCrystal_I2C.h>
-#include "LCDDisplay.h"
 
-class LCDDisplayI2C : public LCDDisplay {
+class LCDDisplayI2C {
 public:
   LCDDisplayI2C();
-  void setMessage(char* text);
   void enterWaste();
   void pressClose();
   void wasteReceived();
