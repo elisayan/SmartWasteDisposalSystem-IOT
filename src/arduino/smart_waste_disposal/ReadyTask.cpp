@@ -35,6 +35,7 @@ void ReadyTask::tick() {
 
       if (pPlant->isDoorOpened()) {
         //TODO prossimo task
+        pPlant->openDoor();
         pPlant->readyForReceiveWaste();
         state = INIT;
       }

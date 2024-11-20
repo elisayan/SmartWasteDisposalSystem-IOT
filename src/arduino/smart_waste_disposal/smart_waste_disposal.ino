@@ -51,9 +51,9 @@ void setup() {
   ready->init(100);
   sched.addTask(ready);
 
-  // Task* receive = new ReceivingWasteTask(pSmartWastePlant, lcd);
-  // receive->init(100);
-  // sched.addTask(receive);
+  Task* receive = new ReceivingWasteTask(pSmartWastePlant, lcd);
+  receive->init(100);
+  sched.addTask(receive);
 }
 
 void loop() {

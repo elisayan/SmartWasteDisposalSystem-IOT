@@ -1,62 +1,66 @@
 #include "Arduino.h"
 #include "ReceivingWasteTask.h"
 
-ReceivingWasteTask::ReceivingWasteTask(ServoMotor* motor, LCDDisplayI2C* lcd, ButtonImpl* button2, Sonar* sonar) {
-  this->motor = motor;
-  this->lcd = lcd;
-  this->button2 = button2;
-  this->sonar = sonar;
-}
+#define TIME2 8000
+#define DISTANCE1 5.0
 
-void ReceivingWasteTask::init(int period) {
-  Task::init(period);
-  motor->on();
-  motor->setPosition(90);
+ReceivingWasteTask::ReceivingWasteTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
+  this->pPlant = pPlant;
+  this->lcd = lcd;
   state = SPILLING;
 }
 
 void ReceivingWasteTask::tick() {
   switch (state) {
     case SPILLING:
-      timeSpilling = millis();
-      lcd->pressClose();
-      if (button2->isPressed() || millis() - timeSpilling >= TIME2) {
-        closeDoor();
-        lcd->wasteReceived();
-        delay(TIME2);
-        state = CLOSED;
-      }
+      if (pPlant->isReadyForReceiveWaste()) {
+        timeSpilling = millis();
+        lcd->pressClose();
+        pPlant->receivingWaste();
+        if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME2) {
+          pPlant->wasteReceived();
+          pPlant->closeDoor();
+          lcd->wasteReceived();
+          delay(TIME2);
+          pPlant->readyForReceiveWaste();
+          state = CLOSED;
+        }
 
-      if (isFull()) {
-        closeDoor();
-        lcd->containerFull();
-        //TODO l1 off, l2 on
-        state = FULL;
+        // if (isFull()) {
+        //   prepareToBeEmptied();
+        //   pPlant->closeDoor();
+        //   state = FULL;
+        // }
       }
       break;
 
     case CLOSED:
       if (isFull()) {
-        closeDoor();
-        lcd->containerFull();
+        prepareToBeEmptied();
         state = FULL;
       } else {
+        pPlant->readyForReceiveWaste();
         state = SPILLING;
       }
       break;
 
     case FULL:
-      Task::setActive(false);
       //TODO waiting operator for empty the container
+      pPlant->isReadyForEmpty();
+      break;
+
+    case ALARM:
       break;
   }
 }
 
-void ReceivingWasteTask::closeDoor() {
-  motor->on();
-  motor->setPosition(0);
+bool ReceivingWasteTask::isFull() {
+  return pPlant->getCurrentWasteDistance() <= DISTANCE1;
 }
 
-bool ReceivingWasteTask::isFull() {
-  return sonar->getDistance() <= DISTANCE1;
+bool ReceivingWasteTask::prepareToBeEmptied() {
+  pPlant->setInMaintenance();
+  pPlant->alarmOn();
+  lcd->containerFull();
+  pPlant->alarmOn();
 }
