@@ -46,6 +46,7 @@ public:
   double getCurrentWasteDistance();
   bool detectedUserPresence();
   double getCurrentTemperature();
+  bool isDoorOpened();
 
 private:
   enum { IDLE,

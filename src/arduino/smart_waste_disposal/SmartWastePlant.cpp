@@ -39,7 +39,9 @@ void SmartWastePlant::openDoor() {
 }
 
 void SmartWastePlant::closeDoor() {
+  pMotor->on();
   pMotor->setPosition(0);
+  //TODO off door
 }
 
 void SmartWastePlant::setAvailable() {
@@ -148,4 +150,8 @@ bool SmartWastePlant::detectedUserPresence() {
 
 double SmartWastePlant::getCurrentTemperature() {
   return pTemp->getTemperature();
+}
+
+bool SmartWastePlant::isDoorOpened() {
+  return pOpenButton->isPressed();
 }
