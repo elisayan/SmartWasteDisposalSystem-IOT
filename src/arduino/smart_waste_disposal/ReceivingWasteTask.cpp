@@ -3,6 +3,7 @@
 
 #define TIME2 8000
 #define DISTANCE1 5.0
+#define MAX_TEMPERATURE 26
 
 ReceivingWasteTask::ReceivingWasteTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
@@ -31,6 +32,12 @@ void ReceivingWasteTask::tick() {
         //   pPlant->closeDoor();
         //   state = FULL;
         // }
+
+        if(isTemperatureExceed()){
+          state = ALARM;
+          pPlant->alarmOn();
+          lcd->problemDetected();
+        }
       }
       break;
 
@@ -50,6 +57,9 @@ void ReceivingWasteTask::tick() {
       break;
 
     case ALARM:
+      if(pPlant->isInMaintenance()){
+          
+      }
       break;
   }
 }
@@ -58,9 +68,13 @@ bool ReceivingWasteTask::isFull() {
   return pPlant->getCurrentWasteDistance() <= DISTANCE1;
 }
 
-bool ReceivingWasteTask::prepareToBeEmptied() {
+void ReceivingWasteTask::prepareToBeEmptied() {
   pPlant->setInMaintenance();
   pPlant->alarmOn();
   lcd->containerFull();
   pPlant->alarmOn();
+}
+
+bool ReceivingWasteTask::isTemperatureExceed() {
+  return pPlant->getCurrentTemperature() >= MAX_TEMPERATURE;
 }

@@ -34,3 +34,9 @@ void LCDDisplayI2C::containerFull() {
   lcd.setCursor(0, 0);
   lcd.print("CONTAINER FULL");
 }
+
+void LCDDisplayI2C::problemDetected() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("PROBLEM DETECTED");
+}

@@ -12,6 +12,7 @@ public:
   void pressClose();
   void wasteReceived();
   void containerFull();
+  void problemDetected();
 
 private:
   LiquidCrystal_I2C lcd;

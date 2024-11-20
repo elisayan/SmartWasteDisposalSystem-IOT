@@ -13,6 +13,7 @@ public:
 private:
   bool isFull();
   void prepareToBeEmptied();
+  bool isTemperatureExceed();
 
   enum { SPILLING,
          CLOSED,

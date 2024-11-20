@@ -6,17 +6,20 @@
 ReadyTask::ReadyTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
   this->lcd = lcd;
+  pPlant->setIdle();
   state = INIT;
 }
 
 void ReadyTask::tick() {
   switch (state) {
     case INIT:
-      startTime = millis();
-      pPlant->setAvailable();
-      pPlant->closeDoor();
-      lcd->enterWaste();
-      state = WAITING;
+      if (pPlant->isIdle()) {
+        startTime = millis();
+        pPlant->setAvailable();
+        pPlant->closeDoor();
+        lcd->enterWaste();
+        state = WAITING;
+      }
       break;
 
     case SLEEP:
