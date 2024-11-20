@@ -10,6 +10,7 @@
 #include "Scheduler.h"
 #include "ReadyTask.h"
 #include "ReceivingWasteTask.h"
+#include "EmptyTask.h"
 
 Scheduler sched;
 SmartWastePlant* pSmartWastePlant;
@@ -30,6 +31,10 @@ void setup() {
   Task* receive = new ReceivingWasteTask(pSmartWastePlant, lcd);
   receive->init(100);
   sched.addTask(receive);
+
+  Task* empty = new EmptyTask(pSmartWastePlant, lcd);
+  empty->init(100);
+  sched.addTask(empty);
 }
 
 void loop() {
