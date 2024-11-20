@@ -155,3 +155,7 @@ double SmartWastePlant::getCurrentTemperature() {
 bool SmartWastePlant::isDoorOpened() {
   return pOpenButton->isPressed();
 }
+
+bool SmartWastePlant::isDoorClosed() {
+  return pCloseButton->isPressed();
+}

@@ -47,6 +47,7 @@ public:
   bool detectedUserPresence();
   double getCurrentTemperature();
   bool isDoorOpened();
+  bool isDoorClosed();
 
 private:
   enum { IDLE,
