@@ -2,7 +2,7 @@
 #define __SERVO_MOTOR__
 
 #include "Door.h"
-#include <Servo.h>
+#include <ServoTimer2.h>
 
 class ServoMotor : public Door {
 
@@ -15,7 +15,7 @@ public:
 
 private:
   int pin;
-  Servo motor;
+  ServoTimer2 motor;
 };
 
 #endif
