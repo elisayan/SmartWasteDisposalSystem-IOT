@@ -1,7 +1,7 @@
 #include "ReadyTask.h"
 #include <Arduino.h>
 
-#define TIME_SLEEP 5000
+#define TIME_SLEEP 30000
 
 ReadyTask::ReadyTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
@@ -29,6 +29,9 @@ void ReadyTask::tick() {
 
     case SLEEP:
       if (pPlant->detectedUserPresence()) {
+        Serial.println("User detected, waking up...");
+        lcd->turnOn();
+        lcd->enterWaste();
         pPlant->resumeFromSleeping();
         startTime = millis();
         state = WAITING;
@@ -37,12 +40,15 @@ void ReadyTask::tick() {
 
     case WAITING:
       if (isSleepTimeOut()) {
+        Serial.println("SLEEPED");
+        lcd->turnOff();
         pPlant->prepareToSleep();
         state = SLEEP;
       }
 
       if (pPlant->isDoorOpened()) {
         //TODO prossimo task
+        Serial.println("button clicked");
         pPlant->openDoor();
         pPlant->readyForReceiveWaste();
         state = INIT;

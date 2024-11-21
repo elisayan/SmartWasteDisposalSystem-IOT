@@ -11,6 +11,8 @@ public:
   void wasteReceived();
   void containerFull();
   void problemDetected();
+  void turnOff();
+  void turnOn();
 
 private:
   LiquidCrystal_I2C lcd;

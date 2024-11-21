@@ -44,5 +44,4 @@ void Scheduler::schedule() {
       }
     }
   }
-  Serial.println("loop");
 }

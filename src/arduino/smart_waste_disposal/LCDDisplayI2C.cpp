@@ -1,6 +1,7 @@
 #include "LCDDisplayI2C.h"
 
-LCDDisplayI2C::LCDDisplayI2C() : lcd(0x27, 20, 4) { 
+LCDDisplayI2C::LCDDisplayI2C()
+  : lcd(0x27, 20, 4) {
   lcd.init();
   lcd.backlight();
 }
@@ -33,4 +34,14 @@ void LCDDisplayI2C::problemDetected() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("PROBLEM DETECTED");
+}
+
+void LCDDisplayI2C::turnOff() {
+  lcd.noDisplay();
+}
+
+void LCDDisplayI2C::turnOn() {
+  lcd.display();
+  lcd.backlight();
+  lcd.clear();
 }
