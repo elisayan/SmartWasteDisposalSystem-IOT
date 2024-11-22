@@ -70,6 +70,7 @@ void SmartWastePlant::prepareToSleep() {
     pLed1->switchOn();
   }
   Serial.println("The system will enter in sleep mode in 3 second...");
+  Serial.println("3");
   delay(1000);
   Serial.println("2");
   delay(1000);

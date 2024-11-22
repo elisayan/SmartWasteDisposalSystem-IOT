@@ -3,8 +3,8 @@
 
 #define TIME1 10000
 #define TIME2 5000
-#define DISTANCE1 5.0
-#define MAX_TEMPERATURE 26
+#define DISTANCE1 1.0
+#define MAX_TEMPERATURE 100
 
 ReceivingWasteTask::ReceivingWasteTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
@@ -31,18 +31,15 @@ void ReceivingWasteTask::tick() {
           pPlant->readyForReceiveWaste();
           state = CLOSED;
         }
+
+        if (isFull()) {
+          pPlant->closeDoor();
+          state = FULL;
+        }
       }
 
-      // if (isFull()) {
-      //   prepareToBeEmptied();
-      //   pPlant->closeDoor();
-      //   state = FULL;
-      // }
-
       if (isTemperatureExceed()) {
-        pPlant->alarmOn();
         pPlant->waitForOperatorRestore();
-        lcd->problemDetected();
         state = ALARM;
       }
       break;
@@ -50,7 +47,6 @@ void ReceivingWasteTask::tick() {
     case CLOSED:
       if (pPlant->isWasteReceived()) {
         if (isFull()) {
-          prepareToBeEmptied();
           state = FULL;
         } else {
           pPlant->readyForReceiveWaste();
@@ -61,12 +57,15 @@ void ReceivingWasteTask::tick() {
 
     case FULL:
       //TODO waiting operator for empty the container
+      prepareToBeEmptied();
       pPlant->isReadyForEmpty();
       break;
 
     case ALARM:
+      pPlant->alarmOn();
+      lcd->problemDetected();
       if (pPlant->isReadyForRestore()) {
-
+        Serial.println("Ready for operatore to restore the system...");
       }
       break;
   }
