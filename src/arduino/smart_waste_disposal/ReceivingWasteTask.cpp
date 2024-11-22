@@ -1,7 +1,8 @@
 #include "Arduino.h"
 #include "ReceivingWasteTask.h"
 
-#define TIME2 8000
+#define TIME1 10000
+#define TIME2 5000
 #define DISTANCE1 5.0
 #define MAX_TEMPERATURE 26
 
@@ -18,7 +19,11 @@ void ReceivingWasteTask::tick() {
         timeSpilling = millis();
         lcd->pressClose();
         pPlant->receivingWaste();
+      }
+
+      if (pPlant->isReceivingWaste()) {
         if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME2) {
+          Serial.println("Close button clicked");
           pPlant->wasteReceived();
           pPlant->closeDoor();
           lcd->wasteReceived();
@@ -26,28 +31,31 @@ void ReceivingWasteTask::tick() {
           pPlant->readyForReceiveWaste();
           state = CLOSED;
         }
+      }
 
-        // if (isFull()) {
-        //   prepareToBeEmptied();
-        //   pPlant->closeDoor();
-        //   state = FULL;
-        // }
+      // if (isFull()) {
+      //   prepareToBeEmptied();
+      //   pPlant->closeDoor();
+      //   state = FULL;
+      // }
 
-        if(isTemperatureExceed()){
-          state = ALARM;
-          pPlant->alarmOn();
-          lcd->problemDetected();
-        }
+      if (isTemperatureExceed()) {
+        pPlant->alarmOn();
+        pPlant->waitForOperatorRestore();
+        lcd->problemDetected();
+        state = ALARM;
       }
       break;
 
     case CLOSED:
-      if (isFull()) {
-        prepareToBeEmptied();
-        state = FULL;
-      } else {
-        pPlant->readyForReceiveWaste();
-        state = SPILLING;
+      if (pPlant->isWasteReceived()) {
+        if (isFull()) {
+          prepareToBeEmptied();
+          state = FULL;
+        } else {
+          pPlant->readyForReceiveWaste();
+          state = SPILLING;
+        }
       }
       break;
 
@@ -57,8 +65,8 @@ void ReceivingWasteTask::tick() {
       break;
 
     case ALARM:
-      if(pPlant->isInMaintenance()){
-          
+      if (pPlant->isReadyForRestore()) {
+
       }
       break;
   }
@@ -69,10 +77,9 @@ bool ReceivingWasteTask::isFull() {
 }
 
 void ReceivingWasteTask::prepareToBeEmptied() {
-  pPlant->setInMaintenance();
+  pPlant->readyForEmpty();
   pPlant->alarmOn();
   lcd->containerFull();
-  pPlant->alarmOn();
 }
 
 bool ReceivingWasteTask::isTemperatureExceed() {
