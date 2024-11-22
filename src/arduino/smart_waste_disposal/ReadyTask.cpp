@@ -18,9 +18,6 @@ void ReadyTask::tick() {
         pPlant->setAvailable();
         pPlant->closeDoor();
         lcd->enterWaste();
-        if (pPlant->isDoorOpened()) {
-          Serial.println("button open clicked");
-        }
         state = WAITING;
       }
       break;

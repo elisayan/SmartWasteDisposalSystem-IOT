@@ -35,6 +35,8 @@ void ReceivingWasteTask::tick() {
         if (isFull()) {
           pPlant->closeDoor();
           state = FULL;
+        } else{
+          pPlant->setIdle();
         }
       }
 
