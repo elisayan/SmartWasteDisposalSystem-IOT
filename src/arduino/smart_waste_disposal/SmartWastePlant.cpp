@@ -15,7 +15,6 @@ SmartWastePlant::SmartWastePlant() {
 
 void SmartWastePlant::init() {
   pMotor = new ServoMotor(MOTOR);
-  pLcd = new LCDDisplayI2C();
   pOpenButton = new ButtonImpl(BUTTON1);
   pCloseButton = new ButtonImpl(BUTTON2);
   pLed1 = new Led(LED1);
@@ -26,6 +25,8 @@ void SmartWastePlant::init() {
 
   Serial.println("Calibrating pir sensor...");
   pPir->calibrate();
+  delay(2000);
+  Serial.println("Done!");
 
   state = IDLE;
 }
@@ -106,6 +107,10 @@ void SmartWastePlant::wasteReceived() {
   state = WASTE_RECEIVED;
 }
 
+bool SmartWastePlant::isWasteReceived() {
+  return state == WASTE_RECEIVED;
+}
+
 void SmartWastePlant::readyForEmpty() {
   state = READY_FOR_EMPTY;
 }
@@ -126,15 +131,7 @@ void SmartWastePlant::emptied() {
   state = EMPTIED;
 }
 
-void SmartWastePlant::setInMaintenance() {
-  state = MAINTENANCE;
-}
-
-bool SmartWastePlant::isInMaintenance() {
-  return state == MAINTENANCE;
-} 
-
-void SmartWastePlant::maintenanceDone() {
+void SmartWastePlant::waitForOperatorRestore() {
   state = READY_FOR_RESTORE;
 }
 

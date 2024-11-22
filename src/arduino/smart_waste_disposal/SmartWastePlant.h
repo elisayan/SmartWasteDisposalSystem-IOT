@@ -31,6 +31,7 @@ public:
   bool isReceivingWaste();
   void receivingWaste();
   void wasteReceived();
+  bool isWasteReceived();
 
   void readyForEmpty();
   bool isReadyForEmpty();
@@ -38,9 +39,7 @@ public:
   void emptying();
   void emptied();
 
-  void setInMaintenance();
-  bool isInMaintenance();
-  void maintenanceDone();
+  void waitForOperatorRestore();
   bool isReadyForRestore();
 
   double getCurrentWasteDistance();
@@ -57,8 +56,7 @@ private:
          READY_FOR_EMPTY,
          EMPTYING,
          EMPTIED,
-         READY_FOR_RESTORE,
-         MAINTENANCE
+         READY_FOR_RESTORE
   } state;
 
   ServoMotor* pMotor;
