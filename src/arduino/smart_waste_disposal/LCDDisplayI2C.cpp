@@ -1,4 +1,5 @@
 #include "LCDDisplayI2C.h"
+#include <Arduino.h>
 
 LCDDisplayI2C::LCDDisplayI2C()
   : lcd(0x27, 20, 4) {
@@ -9,13 +10,21 @@ LCDDisplayI2C::LCDDisplayI2C()
 void LCDDisplayI2C::enterWaste() {
   lcd.clear();
   lcd.setCursor(0, 0);
+  lcd.print("WELCOME TO");
+  lcd.setCursor(0, 1);
+  lcd.print("SMART WASTE SYSTEM");
+  delay(5000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
   lcd.print("PRESS OPEN TO ENTER WASTE");
 }
 
 void LCDDisplayI2C::pressClose() {
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("PRESS CLOSE WHEN DONE");
+  lcd.print("PRESS CLOSE WHEN ");
+  lcd.setCursor(0, 1);
+  lcd.print("DONE");
 }
 
 void LCDDisplayI2C::wasteReceived() {
