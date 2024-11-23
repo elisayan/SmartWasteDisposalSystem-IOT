@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.input.MouseEvent;
 
 public class OperatorDashboardSceneController {
 
@@ -24,12 +23,17 @@ public class OperatorDashboardSceneController {
     private ProgressBar wasteProgress;
 
     @FXML
-    void emptyClicked(MouseEvent event) {
+    void initialize() {
 
     }
 
     @FXML
-    void restoreClicked(MouseEvent event) {
+    void emptyClicked() {
+
+    }
+
+    @FXML
+    void restoreClicked() {
 
     }
 
