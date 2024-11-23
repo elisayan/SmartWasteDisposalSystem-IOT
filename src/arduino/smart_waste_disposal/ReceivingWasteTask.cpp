@@ -38,7 +38,8 @@ void ReceivingWasteTask::tick() {
 
         if (isFull()) {
           pPlant->closeDoor();
-          fullTask();
+          pPlant->readyForEmpty();
+          state = FULL;
         }
       }
       break;
@@ -46,25 +47,36 @@ void ReceivingWasteTask::tick() {
     case CLOSED:
       Serial.println("Door closed");
       if (pPlant->isWasteReceived()) {
-        fullTask();
+        if (isFull()) {
+          pPlant->readyForEmpty();
+          state = FULL;
+        } else {
+          Serial.println("Back to receive waste");
+          pPlant->setIdle();
+          state = INIT;
+        }
       }
       break;
 
     case FULL:
       //TODO waiting operator for empty the container
-      prepareToBeEmptied();
-      pPlant->readyForEmpty();
+      if (pPlant->isReadyForEmpty()) {
+        pPlant->alarmOn();
+        lcd->containerFull();
+        state = INIT;
+      }
       break;
 
     case ALARM:
-      pPlant->alarmOn();
-      lcd->problemDetected();
       if (pPlant->isReadyForRestore()) {
-        Serial.println("Ready for operatore to restore the system...");
+        //Serial.println("Ready for operatore to restore the system...");
+        pPlant->alarmOn();
+        lcd->problemDetected();
+        state = INIT;
       }
       break;
   }
-  Serial.println("check temperature");
+
   if (isTemperatureExceed()) {
     pPlant->waitForOperatorRestore();
     state = ALARM;
@@ -73,22 +85,6 @@ void ReceivingWasteTask::tick() {
 
 bool ReceivingWasteTask::isFull() {
   return pPlant->getCurrentWasteDistance() <= DISTANCE1;
-}
-
-void ReceivingWasteTask::fullTask() {
-  if (isFull()) {
-    state = FULL;
-  } else {
-    Serial.println("Back to receive waste");
-    pPlant->setIdle();
-    state = INIT;
-  }
-}
-
-void ReceivingWasteTask::prepareToBeEmptied() {
-  pPlant->readyForEmpty();
-  pPlant->alarmOn();
-  lcd->containerFull();
 }
 
 bool ReceivingWasteTask::isTemperatureExceed() {
