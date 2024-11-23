@@ -14,7 +14,6 @@ class SmartWastePlant {
 public:
   SmartWastePlant();
   void init();
-  static void wakeUp();
 
   void openDoor();
   void closeDoor();

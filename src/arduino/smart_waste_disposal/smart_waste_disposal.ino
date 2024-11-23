@@ -39,6 +39,6 @@ void setup() {
 
 void loop() {
   //Serial.println(pSmartWastePlant->getCurrentTemperature());
-  Serial.println(pSmartWastePlant->getCurrentWasteDistance());
+  //Serial.println(pSmartWastePlant->getCurrentWasteDistance());
   sched.schedule();
 }

@@ -33,8 +33,6 @@ void ReceivingWasteTask::tick() {
           pPlant->closeDoor();
           lcd->wasteReceived();
           delay(TIME2);
-          Serial.println("time2 out");
-          //pPlant->readyForReceiveWaste();
           state = CLOSED;
         }
 
@@ -43,15 +41,10 @@ void ReceivingWasteTask::tick() {
           fullTask();
         }
       }
-
-      if (isTemperatureExceed()) {
-        pPlant->waitForOperatorRestore();
-        state = ALARM;
-      }
       break;
 
     case CLOSED:
-      Serial.println("door closed");
+      Serial.println("Door closed");
       if (pPlant->isWasteReceived()) {
         fullTask();
       }
@@ -70,6 +63,11 @@ void ReceivingWasteTask::tick() {
         Serial.println("Ready for operatore to restore the system...");
       }
       break;
+  }
+  Serial.println("check temperature");
+  if (isTemperatureExceed()) {
+    pPlant->waitForOperatorRestore();
+    state = ALARM;
   }
 }
 

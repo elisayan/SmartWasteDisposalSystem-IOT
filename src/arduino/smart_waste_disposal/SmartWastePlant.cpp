@@ -3,6 +3,9 @@
 #include "SmartWastePlant.h"
 #include "Config.h"
 
+void wakeUp() {
+}
+
 SmartWastePlant::SmartWastePlant() {
   enableInterrupt(MOTOR, wakeUp, RISING);
   enableInterrupt(BUTTON1, wakeUp, RISING);
@@ -29,9 +32,6 @@ void SmartWastePlant::init() {
   Serial.println("Done!");
 
   state = IDLE;
-}
-
-void SmartWastePlant::wakeUp() {
 }
 
 void SmartWastePlant::openDoor() {
