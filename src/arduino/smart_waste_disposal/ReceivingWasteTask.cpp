@@ -9,35 +9,41 @@
 ReceivingWasteTask::ReceivingWasteTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
   this->lcd = lcd;
-  state = SPILLING;
+  state = INIT;
 }
 
 void ReceivingWasteTask::tick() {
   switch (state) {
-    case SPILLING:
+    case INIT:
       if (pPlant->isReadyForReceiveWaste()) {
         timeSpilling = millis();
         lcd->pressClose();
         pPlant->receivingWaste();
+        state = SPILLING;
       }
+      break;
 
+    case SPILLING:
       if (pPlant->isReceivingWaste()) {
-        if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME2) {
-          Serial.println("Close button clicked");
+        if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME1) {
+          if (pPlant->isDoorClosed()) {
+            Serial.println("Close button clicked");
+          }
           pPlant->wasteReceived();
           pPlant->closeDoor();
           lcd->wasteReceived();
           delay(TIME2);
-          pPlant->readyForReceiveWaste();
+          Serial.println("time2 out");
+          //pPlant->readyForReceiveWaste();
           state = CLOSED;
         }
 
-        if (isFull()) {
-          pPlant->closeDoor();
-          state = FULL;
-        } else{
-          pPlant->setIdle();
-        }
+        // if (isFull()) {
+        //   pPlant->closeDoor();
+        //   state = FULL;
+        // } else{
+        //   pPlant->setIdle();
+        // }
       }
 
       if (isTemperatureExceed()) {
@@ -47,20 +53,26 @@ void ReceivingWasteTask::tick() {
       break;
 
     case CLOSED:
+      Serial.println("door closed");
       if (pPlant->isWasteReceived()) {
-        if (isFull()) {
-          state = FULL;
-        } else {
-          pPlant->readyForReceiveWaste();
-          state = SPILLING;
-        }
-      }
+        // if (isFull()) {
+        //   state = FULL;
+        // } else {
+        Serial.println("Back to receive waste");
+        pPlant->setIdle();
+        state = INIT;
+        //state = SPILLING;
+        //}
+      } 
+
+      
+
       break;
 
     case FULL:
       //TODO waiting operator for empty the container
       prepareToBeEmptied();
-      pPlant->isReadyForEmpty();
+      pPlant->readyForEmpty();
       break;
 
     case ALARM:

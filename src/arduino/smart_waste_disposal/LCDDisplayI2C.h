@@ -6,6 +6,7 @@
 class LCDDisplayI2C {
 public:
   LCDDisplayI2C();
+  void welcome();
   void enterWaste();
   void pressClose();
   void wasteReceived();

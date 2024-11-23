@@ -7,13 +7,16 @@ LCDDisplayI2C::LCDDisplayI2C()
   lcd.backlight();
 }
 
-void LCDDisplayI2C::enterWaste() {
+void LCDDisplayI2C::welcome() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("WELCOME TO");
   lcd.setCursor(0, 1);
   lcd.print("SMART WASTE SYSTEM");
   delay(5000);
+}
+
+void LCDDisplayI2C::enterWaste() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("PRESS OPEN TO ENTER WASTE");

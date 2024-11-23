@@ -6,6 +6,7 @@
 ReadyTask::ReadyTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
   this->lcd = lcd;
+  lcd->welcome();
   pPlant->setIdle();
   state = INIT;
 }

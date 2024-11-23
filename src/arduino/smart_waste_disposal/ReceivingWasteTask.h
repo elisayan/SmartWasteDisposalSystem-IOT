@@ -15,7 +15,8 @@ private:
   void prepareToBeEmptied();
   bool isTemperatureExceed();
 
-  enum { SPILLING,
+  enum { INIT,
+         SPILLING,
          CLOSED,
          FULL,
          ALARM } state;
