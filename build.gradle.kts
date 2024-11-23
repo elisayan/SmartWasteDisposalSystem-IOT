@@ -53,6 +53,8 @@ dependencies {
         }
     }
 
+    implementation("io.github.java-native:jssc:2.9.6")
+
     val jUnitVersion = "5.11.3"
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
