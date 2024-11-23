@@ -3,7 +3,7 @@
 
 #define TIME1 10000
 #define TIME2 5000
-#define DISTANCE1 1.0
+#define DISTANCE1 0.05
 #define MAX_TEMPERATURE 100
 
 ReceivingWasteTask::ReceivingWasteTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
@@ -38,12 +38,10 @@ void ReceivingWasteTask::tick() {
           state = CLOSED;
         }
 
-        // if (isFull()) {
-        //   pPlant->closeDoor();
-        //   state = FULL;
-        // } else{
-        //   pPlant->setIdle();
-        // }
+        if (isFull()) {
+          pPlant->closeDoor();
+          fullTask();
+        }
       }
 
       if (isTemperatureExceed()) {
@@ -55,18 +53,8 @@ void ReceivingWasteTask::tick() {
     case CLOSED:
       Serial.println("door closed");
       if (pPlant->isWasteReceived()) {
-        // if (isFull()) {
-        //   state = FULL;
-        // } else {
-        Serial.println("Back to receive waste");
-        pPlant->setIdle();
-        state = INIT;
-        //state = SPILLING;
-        //}
-      } 
-
-      
-
+        fullTask();
+      }
       break;
 
     case FULL:
@@ -87,6 +75,16 @@ void ReceivingWasteTask::tick() {
 
 bool ReceivingWasteTask::isFull() {
   return pPlant->getCurrentWasteDistance() <= DISTANCE1;
+}
+
+void ReceivingWasteTask::fullTask() {
+  if (isFull()) {
+    state = FULL;
+  } else {
+    Serial.println("Back to receive waste");
+    pPlant->setIdle();
+    state = INIT;
+  }
 }
 
 void ReceivingWasteTask::prepareToBeEmptied() {

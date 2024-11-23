@@ -12,6 +12,7 @@ public:
 
 private:
   bool isFull();
+  void fullTask();
   void prepareToBeEmptied();
   bool isTemperatureExceed();
 
