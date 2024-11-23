@@ -24,17 +24,24 @@ public class OperatorDashboardSceneController {
 
     @FXML
     void initialize() {
-
+        fillingPercentageLabel.setText("");
+        restoreButton.setDisable(true);
+        emptyButton.setDisable(true);
+        wasteProgress.setProgress(0);
     }
 
     @FXML
-    void emptyClicked() {
-
+    void emptyClicked() throws InterruptedException {
+        for (int i = 0; i < 10; i++) {
+            wasteProgress.setProgress((double) i /20);
+            fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
+            Thread.sleep(1000);
+        }
     }
 
     @FXML
     void restoreClicked() {
-
+        wasteProgress.setProgress(0);
     }
 
 }
