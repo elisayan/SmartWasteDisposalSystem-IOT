@@ -1,4 +1,4 @@
-package src.main.java.operator_dashboard.view;
+package operator_dashboard.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,16 +32,16 @@ public class OperatorDashboardSceneController {
 
     @FXML
     void emptyClicked() throws InterruptedException {
-        for (int i = 0; i < 10; i++) {
-            wasteProgress.setProgress((double) i /20);
-            fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
-            Thread.sleep(1000);
-        }
+//        for (int i = 0; i < 10; i++) {
+//            wasteProgress.setProgress((double) i /20);
+//            fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
+//            Thread.sleep(1000);
+//        }
     }
 
     @FXML
     void restoreClicked() {
-        wasteProgress.setProgress(0);
+        //wasteProgress.setProgress(0);
     }
 
 }

@@ -1,4 +1,4 @@
-package src.main.java.operator_dashboard.communication;
+package operator_dashboard.communication;
 
 public interface CommChannel {
 
