@@ -12,12 +12,14 @@ plugins {
      * The runnable jar will be found in build/libs/projectname-all.jar
      */
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.danilopianini.gradle-java-qa") version "1.75.0"
+    //id("org.danilopianini.gradle-java-qa") version "1.75.0"
 }
 
-sourceSets.getByName("main") {
-    java.srcDir("src/arduino")
-    java.srcDir("src/pc")
+sourceSets {
+    main {
+        java.srcDirs("src/arduino", "src/pc")
+        resources.srcDir("src/main/resources")
+    }
 }
 
 //sourceSets.getByName("resources") {
@@ -40,7 +42,7 @@ val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
 
 dependencies {
     // Suppressions for SpotBugs
-    compileOnly("com.github.spotbugs:spotbugs-annotations:4.8.6")
+    //compileOnly("com.github.spotbugs:spotbugs-annotations:4.8.6")
 
     // Example library: Guava. Add what you need (and remove Guava if you don't use it)
     // implementation("com.google.guava:guava:28.1-jre")
@@ -70,5 +72,5 @@ val main: String by project
 
 application {
     // Define the main class for the application
-    mainClass.set(main)
+    mainClass.set("src.main.java.operator_dashboard.application.Main")
 }
