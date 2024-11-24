@@ -1,5 +1,7 @@
 package operator_dashboard.view;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,24 +26,41 @@ public class OperatorDashboardSceneController {
 
     @FXML
     void initialize() {
-        fillingPercentageLabel.setText("");
-        restoreButton.setDisable(true);
-        emptyButton.setDisable(true);
-        wasteProgress.setProgress(0);
+        //restoreButton.setDisable(true);
+        //emptyButton.setDisable(true);
+        wasteProgress.setProgress(1);
+        fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
 
     @FXML
-    void emptyClicked() throws InterruptedException {
-//        for (int i = 0; i < 10; i++) {
-//            wasteProgress.setProgress((double) i /20);
-//            fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
-//            Thread.sleep(1000);
-//        }
+    void emptyClicked() {
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws InterruptedException {
+                if (wasteProgress.getProgress() == 1) {
+                    for (int i = 10; i >= 0; i--) {
+                        double progress = (double) i / 10;
+                        Platform.runLater(() -> {
+                            wasteProgress.setProgress(progress);
+                            fillingPercentageLabel.setText(String.format("%d%%", (int) (progress * 100)));
+                        });
+                        Thread.sleep(1000);
+                    }
+                }
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
+
 
     @FXML
     void restoreClicked() {
-        //wasteProgress.setProgress(0);
+        wasteProgress.setProgress(0);
+        fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
 
 }
