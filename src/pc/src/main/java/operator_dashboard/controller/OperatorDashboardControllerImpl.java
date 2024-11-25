@@ -5,13 +5,19 @@ import operator_dashboard.view.OperatorDashboardView;
 
 public class OperatorDashboardControllerImpl implements OperatorDashboardController{
 
+    private static final String PORT = "COM3";
+    private static final int RATE = 9600;
+    private static final long REBOOTING_TIME = 4000;
+
     private OperatorDashboardView view;
     private SerialCommChannel channel;
 
-    private OperatorDashboardControllerImpl(String port, OperatorDashboardView view) throws Exception {
+    public OperatorDashboardControllerImpl(OperatorDashboardView view) throws Exception {
         this.view = view;
-        channel = new SerialCommChannel(port, 9600);
+        channel = new SerialCommChannel(PORT, RATE);
 
-
+        System.out.println("Waiting Arduino for rebooting...");
+        Thread.sleep(REBOOTING_TIME);
+        System.out.println("Ready.");
     }
 }

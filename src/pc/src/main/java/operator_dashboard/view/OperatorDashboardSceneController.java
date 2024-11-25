@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import operator_dashboard.controller.OperatorDashboardController;
+import operator_dashboard.controller.OperatorDashboardControllerImpl;
 
-public class OperatorDashboardSceneController {
+public class OperatorDashboardSceneController extends OperatorDashboardView{
 
     @FXML
     private Button emptyButton;
@@ -24,8 +26,11 @@ public class OperatorDashboardSceneController {
     @FXML
     private ProgressBar wasteProgress;
 
+    private OperatorDashboardController controller;
+
     @FXML
-    void initialize() {
+    void initialize() throws Exception {
+        this.controller = new OperatorDashboardControllerImpl(this);
         //restoreButton.setDisable(true);
         //emptyButton.setDisable(true);
         wasteProgress.setProgress(1);
@@ -62,5 +67,7 @@ public class OperatorDashboardSceneController {
         wasteProgress.setProgress(0);
         fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
+
+
 
 }
