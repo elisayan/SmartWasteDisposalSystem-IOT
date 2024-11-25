@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="131fec1e-dcad-43cd-8856-efb94ac9569c" name="Changes" comment="fixing code">
+      <change beforePath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/build/classes/java/main/operator_dashboard/controller/OperatorDashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/build/classes/java/main/operator_dashboard/controller/OperatorDashboardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/build/classes/java/main/operator_dashboard/controller/OperatorDashboardControllerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/build/classes/java/main/operator_dashboard/controller/OperatorDashboardControllerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/build/classes/java/main/operator_dashboard/view/OperatorDashboardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/build/classes/java/main/operator_dashboard/view/OperatorDashboardView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/build/resources/main/layouts/operator_dashboard_scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/build/resources/main/layouts/operator_dashboard_scene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/build/tmp/compileJava/compileTransaction/stash-dir/OperatorDashboardSceneController$1.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/build/tmp/compileJava/compileTransaction/stash-dir/OperatorDashboardSceneController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/src/main/java/operator_dashboard/controller/OperatorDashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/src/main/java/operator_dashboard/controller/OperatorDashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/src/main/java/operator_dashboard/controller/OperatorDashboardControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/src/main/java/operator_dashboard/controller/OperatorDashboardControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/src/main/java/operator_dashboard/view/OperatorDashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/src/main/java/operator_dashboard/view/OperatorDashboardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pc/src/main/resources/layouts/operator_dashboard_scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/pc/src/main/resources/layouts/operator_dashboard_scene.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/pc">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SmartWasteDisposalSystem-IOT" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SmartWasteDisposalSystem-IOT" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;elisayan&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/elisayan/SmartWasteDisposalSystem-IOT.git&quot;,
+    &quot;accountId&quot;: &quot;f9bfcca7-75a5-4234-bb8f-ad2999737f20&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2og13jpVLaDJoUIGzCiW6N5OVVQ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.operator_dashboard.application.Main.executor": "Run",
+    "Gradle.Build SmartWasteDisposalSystem-IOT.executor": "Run",
+    "Gradle.SmartWasteDisposalSystem-IOT [:Main.main()].executor": "Run",
+    "Gradle.SmartWasteDisposalSystem-IOT [:OperatorDashboardView.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jiaax/Desktop/SmartWasteDisposalSystem-IOT/src/pc",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jiaax\Desktop\SmartWasteDisposalSystem-IOT\src\pc\src\main\java\operator_dashboard\communication" />
+      <recent name="C:\Users\jiaax\Desktop\SmartWasteDisposalSystem-IOT\src\pc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jiaax\Desktop\SmartWasteDisposalSystem-IOT\src" />
+      <recent name="C:\Users\jiaax\Desktop\SmartWasteDisposalSystem-IOT\src\pc\src\main\resources" />
+      <recent name="C:\Users\jiaax\Desktop\SmartWasteDisposalSystem-IOT\src\pc\src\main\java\operator_dashboard\view" />
+      <recent name="C:\Users\jiaax\Desktop\SmartWasteDisposalSystem-IOT\src\pc\src\main\resources\layouts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.operator_dashboard.application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.main.java.operator_dashboard.application.Main" />
+      <module name="SmartWasteDisposalSystem-IOT.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.main.java.operator_dashboard.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OperatorDashboardView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.main.java.operator_dashboard.view.OperatorDashboardView" />
+      <module name="SmartWasteDisposalSystem-IOT.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.main.java.operator_dashboard.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="operator_dashboard.application.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="operator_dashboard.application.Main" />
+      <module name="SmartWasteDisposalSystem-IOT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="operator_dashboard.application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.operator_dashboard.application.Main" />
+        <item itemvalue="Application.OperatorDashboardView" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="131fec1e-dcad-43cd-8856-efb94ac9569c" name="Changes" comment="" />
+      <created>1731276211087</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731276211087</updated>
+      <workItem from="1731276213857" duration="44000" />
+      <workItem from="1731343424195" duration="613000" />
+      <workItem from="1731345406622" duration="5159000" />
+      <workItem from="1731444763176" duration="6903000" />
+      <workItem from="1731621069450" duration="5214000" />
+      <workItem from="1732045258025" duration="51368000" />
+      <workItem from="1732465126749" duration="2373000" />
+    </task>
+    <task id="LOCAL-00001" summary="set up gradle">
+      <option name="closed" value="true" />
+      <created>1731346890176</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731346890176</updated>
+    </task>
+    <task id="LOCAL-00002" summary="implemented task">
+      <option name="closed" value="true" />
+      <created>1731356300784</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731356300785</updated>
+    </task>
+    <task id="LOCAL-00003" summary="configured pins and timeouts">
+      <option name="closed" value="true" />
+      <created>1731444820834</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731444820834</updated>
+    </task>
+    <task id="LOCAL-00004" summary="updated code">
+      <option name="closed" value="true" />
+      <created>1731444836978</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731444836978</updated>
+    </task>
+    <task id="LOCAL-00005" summary="declared devices">
+      <option name="closed" value="true" />
+      <created>1731485798055</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731485798055</updated>
+    </task>
+    <task id="LOCAL-00006" summary="implemented scheduler">
+      <option name="closed" value="true" />
+      <created>1731487422758</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731487422758</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added newline">
+      <option name="closed" value="true" />
+      <created>1731489723250</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731489723250</updated>
+    </task>
+    <task id="LOCAL-00008" summary="changed name">
+      <option name="closed" value="true" />
+      <created>1731492232858</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731492232858</updated>
+    </task>
+    <task id="LOCAL-00009" summary="implemented ready task">
+      <option name="closed" value="true" />
+      <created>1731494021652</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731494021652</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed servo motor">
+      <option name="closed" value="true" />
+      <created>1731534128882</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731534128882</updated>
+    </task>
+    <task id="LOCAL-00011" summary="deleted useless code">
+      <option name="closed" value="true" />
+      <created>1731621117710</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731621117710</updated>
+    </task>
+    <task id="LOCAL-00012" summary="set messages of lcd">
+      <option name="closed" value="true" />
+      <created>1731621154710</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731621154710</updated>
+    </task>
+    <task id="LOCAL-00013" summary="define userdetection task">
+      <option name="closed" value="true" />
+      <created>1731621516639</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1731621516639</updated>
+    </task>
+    <task id="LOCAL-00014" summary="setting">
+      <option name="closed" value="true" />
+      <created>1731621542352</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731621542352</updated>
+    </task>
+    <task id="LOCAL-00015" summary="changed pin">
+      <option name="closed" value="true" />
+      <created>1731621554386</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1731621554386</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed code">
+      <option name="closed" value="true" />
+      <created>1731621568827</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1731621568827</updated>
+    </task>
+    <task id="LOCAL-00017" summary="initialized user detection task">
+      <option name="closed" value="true" />
+      <created>1731682221981</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1731682221981</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fixing error">
+      <option name="closed" value="true" />
+      <created>1731778790169</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1731778790171</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactored ReadyTask">
+      <option name="closed" value="true" />
+      <created>1732091583943</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732091583944</updated>
+    </task>
+    <task id="LOCAL-00020" summary="implemented door closed pressure">
+      <option name="closed" value="true" />
+      <created>1732094243546</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732094243546</updated>
+    </task>
+    <task id="LOCAL-00021" summary="switched off led">
+      <option name="closed" value="true" />
+      <created>1732094496487</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732094496487</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added state alarm">
+      <option name="closed" value="true" />
+      <created>1732096531385</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732096531385</updated>
+    </task>
+    <task id="LOCAL-00023" summary="init temperature alarm">
+      <option name="closed" value="true" />
+      <created>1732098594529</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732098594529</updated>
+    </task>
+    <task id="LOCAL-00024" summary="deleted useless class">
+      <option name="closed" value="true" />
+      <created>1732098746125</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732098746125</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fixed code">
+      <option name="closed" value="true" />
+      <created>1732098936237</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732098936237</updated>
+    </task>
+    <task id="LOCAL-00026" summary="init emptyTask">
+      <option name="closed" value="true" />
+      <created>1732099666473</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732099666473</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fixed code">
+      <option name="closed" value="true" />
+      <created>1732138116792</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732138116793</updated>
+    </task>
+    <task id="LOCAL-00028" summary="included timer2 for ServoMotor.h">
+      <option name="closed" value="true" />
+      <created>1732206899964</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1732206899966</updated>
+    </task>
+    <task id="LOCAL-00029" summary="implemented ReadyTask.cpp">
+      <option name="closed" value="true" />
+      <created>1732213491631</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1732213491631</updated>
+    </task>
+    <task id="LOCAL-00030" summary="refactor layout of messages">
+      <option name="closed" value="true" />
+      <created>1732282134740</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732282134740</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fixed code">
+      <option name="closed" value="true" />
+      <created>1732282161952</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1732282161952</updated>
+    </task>
+    <task id="LOCAL-00032" summary="deleted comments">
+      <option name="closed" value="true" />
+      <created>1732282181359</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1732282181359</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fixed code">
+      <option name="closed" value="true" />
+      <created>1732282200611</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1732282200611</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fixed code">
+      <option name="closed" value="true" />
+      <created>1732314067614</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1732314067615</updated>
+    </task>
+    <task id="LOCAL-00035" summary="implemented back to idle state">
+      <option name="closed" value="true" />
+      <created>1732315294684</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1732315294685</updated>
+    </task>
+    <task id="LOCAL-00036" summary="implemented back to ready task">
+      <option name="closed" value="true" />
+      <created>1732364161304</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1732364161304</updated>
+    </task>
+    <task id="LOCAL-00037" summary="implemented container full state">
+      <option name="closed" value="true" />
+      <created>1732366266326</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1732366266327</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fixed code">
+      <option name="closed" value="true" />
+      <created>1732372425477</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1732372425477</updated>
+    </task>
+    <task id="LOCAL-00039" summary="removed repeatable code">
+      <option name="closed" value="true" />
+      <created>1732373224094</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1732373224095</updated>
+    </task>
+    <task id="LOCAL-00040" summary="set up jssc">
+      <option name="closed" value="true" />
+      <created>1732378058212</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732378058212</updated>
+    </task>
+    <task id="LOCAL-00041" summary="set up javafx scene view">
+      <option name="closed" value="true" />
+      <created>1732384085086</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1732384085086</updated>
+    </task>
+    <task id="LOCAL-00042" summary="modified font size">
+      <option name="closed" value="true" />
+      <created>1732384348576</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1732384348576</updated>
+    </task>
+    <task id="LOCAL-00043" summary="initialized gui">
+      <option name="closed" value="true" />
+      <created>1732385999926</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1732385999926</updated>
+    </task>
+    <task id="LOCAL-00044" summary="testing upload scene">
+      <option name="closed" value="true" />
+      <created>1732402467117</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1732402467120</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fixing code">
+      <option name="closed" value="true" />
+      <created>1732458312417</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1732458312417</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="changed pin" />
+    <MESSAGE value="initialized user detection task" />
+    <MESSAGE value="fixing error" />
+    <MESSAGE value="refactored ReadyTask" />
+    <MESSAGE value="implemented door closed pressure" />
+    <MESSAGE value="switched off led" />
+    <MESSAGE value="added state alarm" />
+    <MESSAGE value="init temperature alarm" />
+    <MESSAGE value="deleted useless class" />
+    <MESSAGE value="init emptyTask" />
+    <MESSAGE value="included timer2 for ServoMotor.h" />
+    <MESSAGE value="implemented ReadyTask.cpp" />
+    <MESSAGE value="refactor layout of messages" />
+    <MESSAGE value="deleted comments" />
+    <MESSAGE value="implemented back to idle state" />
+    <MESSAGE value="implemented back to ready task" />
+    <MESSAGE value="implemented container full state" />
+    <MESSAGE value="fixed code" />
+    <MESSAGE value="removed repeatable code" />
+    <MESSAGE value="set up jssc" />
+    <MESSAGE value="set up javafx scene view" />
+    <MESSAGE value="modified font size" />
+    <MESSAGE value="initialized gui" />
+    <MESSAGE value="testing upload scene" />
+    <MESSAGE value="fixing code" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing code" />
+  </component>
+</project>
