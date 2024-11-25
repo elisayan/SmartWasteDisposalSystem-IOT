@@ -14,10 +14,21 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
     public OperatorDashboardControllerImpl(OperatorDashboardView view) throws Exception {
         this.view = view;
-        channel = new SerialCommChannel(PORT, RATE);
+        this.channel = new SerialCommChannel(PORT, RATE);
 
         System.out.println("Waiting Arduino for rebooting...");
         Thread.sleep(REBOOTING_TIME);
         System.out.println("Ready.");
+    }
+
+
+    @Override
+    public void receiveMessage(String message) {
+
+    }
+
+    @Override
+    public void sendMessage() {
+        this.channel.sendMsg("Maintenance done!");
     }
 }
