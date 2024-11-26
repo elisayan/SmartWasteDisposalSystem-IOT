@@ -2,14 +2,17 @@ package operator_dashboard.communication;
 
 import java.util.concurrent.*;
 import jssc.*;
+import operator_dashboard.controller.OperatorDashboardController;
 
 public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
     private SerialPort serialPort;
     private BlockingQueue<String> queue;
     private StringBuffer currentMsg = new StringBuffer("");
+    private final OperatorDashboardController controller;
 
-    public SerialCommChannel(String port, int rate) throws Exception {
+    public SerialCommChannel(String port, int rate, final OperatorDashboardController controller) throws Exception {
+        this.controller = controller;
         queue = new ArrayBlockingQueue<String>(100);
 
         serialPort = new SerialPort(port);
@@ -88,6 +91,7 @@ public class SerialCommChannel implements CommChannel, SerialPortEventListener {
                     int index = msg2.indexOf("\n");
                     if (index >= 0) {
                         queue.put(msg2.substring(0, index));
+                        this.controller.receiveMessage(queue.take());
                         currentMsg = new StringBuffer("");
                         if (index + 1 < msg2.length()) {
                             currentMsg.append(msg2.substring(index + 1));

@@ -25,6 +25,7 @@ void ReceivingWasteTask::tick() {
 
     case SPILLING:
       if (pPlant->isReceivingWaste()) {
+        Serial.println("SPILLING");
         if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME1) {
           if (pPlant->isDoorClosed()) {
             Serial.println("Close button clicked");
@@ -77,10 +78,10 @@ void ReceivingWasteTask::tick() {
       break;
   }
 
-  if (isTemperatureExceed()) {
-    pPlant->waitForOperatorRestore();
-    state = ALARM;
-  }
+  // if (isTemperatureExceed()) {
+  //   pPlant->waitForOperatorRestore();
+  //   state = ALARM;
+  // }
 }
 
 bool ReceivingWasteTask::isFull() {

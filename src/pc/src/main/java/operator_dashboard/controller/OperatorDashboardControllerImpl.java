@@ -4,18 +4,18 @@ import operator_dashboard.communication.SerialCommChannel;
 import operator_dashboard.view.OperatorDashboardSceneController;
 import operator_dashboard.view.OperatorDashboardView;
 
-public class OperatorDashboardControllerImpl implements OperatorDashboardController{
+public class OperatorDashboardControllerImpl implements OperatorDashboardController {
 
     private static final String PORT = "COM3";
     private static final int RATE = 9600;
     private static final long REBOOTING_TIME = 4000;
 
-    private OperatorDashboardSceneController view;
-    private SerialCommChannel channel;
+    private final OperatorDashboardSceneController view;
+    private final SerialCommChannel channel;
 
     public OperatorDashboardControllerImpl(OperatorDashboardSceneController view) throws Exception {
         this.view = view;
-        this.channel = new SerialCommChannel(PORT, RATE);
+        this.channel = new SerialCommChannel(PORT, RATE, this);
 
         System.out.println("Waiting Arduino for rebooting...");
         Thread.sleep(REBOOTING_TIME);
@@ -24,8 +24,9 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
     @Override
     public void receiveMessage(String message) {
-        switch (message){
-            case "FILLING":
+        switch (message) {
+            case "SPILLING":
+                System.out.println("Received SPILLING message");
                 this.view.fillContainer();
                 break;
 
@@ -49,7 +50,7 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
         this.channel.sendMsg("Maintenance done!");
     }
 
-    private void getTemperature(String message){
+    private void getTemperature(String message) {
         final String[] data = message.split(": ");
         final float temperature = Float.parseFloat(data[1]);
         this.view.updateTemperature(temperature);
