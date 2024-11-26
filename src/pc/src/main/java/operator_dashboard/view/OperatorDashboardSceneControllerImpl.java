@@ -9,7 +9,7 @@ import javafx.scene.control.ProgressBar;
 import operator_dashboard.controller.OperatorDashboardController;
 import operator_dashboard.controller.OperatorDashboardControllerImpl;
 
-public class OperatorDashboardSceneControllerImpl extends OperatorDashboardView implements OperatorDashboardSceneController{
+public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSceneController {
 
     @FXML
     private Button emptyButton;
@@ -31,26 +31,68 @@ public class OperatorDashboardSceneControllerImpl extends OperatorDashboardView 
     @FXML
     void initialize() throws Exception {
         this.controller = new OperatorDashboardControllerImpl(this);
-        //restoreButton.setDisable(true);
-        //emptyButton.setDisable(true);
-        wasteProgress.setProgress(0);
-        fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
+        //this.restoreButton.setDisable(true);
+        //this.emptyButton.setDisable(true);
+        this.temperatureLabel.setText("");
+        this.wasteProgress.setProgress(0);
+        this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
 
     @FXML
     void emptyClicked() {
+        if (this.wasteProgress.getProgress() == 1) {
+            animateProgress(1, 0, -0.1);
+        }
+    }
+
+    @FXML
+    void restoreClicked() {
+        this.wasteProgress.setProgress(0);
+        this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
+    }
+
+    @Override
+    public void fillContainer() {
+        //TODO: interrompere il riempimento nel momento in cui chiude la porta
+        animateProgress(0, 1, 0.1);
+    }
+
+    @Override
+    public void handleMaintenance() throws Exception {
+        if (this.wasteProgress.getProgress() == 0) {
+            this.controller.sendMessage();
+            this.initialize();
+        }
+    }
+
+    @Override
+    public void enableEmptyButton() {
+        this.emptyButton.setDisable(false);
+    }
+
+    @Override
+    public void enableRestoreButton() {
+        this.restoreButton.setDisable(false);
+    }
+
+    @Override
+    public void updateStatus(String msg) {
+
+    }
+
+    private void animateProgress(double start, double end, double step) {
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws InterruptedException {
-                if (wasteProgress.getProgress() == 1) {
-                    for (int i = 10; i >= 0; i--) {
-                        double progress = (double) i / 10;
-                        Platform.runLater(() -> {
-                            wasteProgress.setProgress(progress);
-                            fillingPercentageLabel.setText(String.format("%d%%", (int) (progress * 100)));
-                        });
-                        Thread.sleep(1000);
-                    }
+                double progress = start;
+                while ((step > 0 && progress <= end) || (step < 0 && progress >= end)) {
+                    double currentProgress = progress;
+                    Platform.runLater(() -> {
+                        wasteProgress.setProgress(currentProgress);
+                        fillingPercentageLabel.setText(String.format("%d%%", (int) (currentProgress * 100)));
+                    });
+                    Thread.sleep(1000);
+                    progress += step;
                 }
                 return null;
             }
@@ -60,14 +102,5 @@ public class OperatorDashboardSceneControllerImpl extends OperatorDashboardView 
         thread.setDaemon(true);
         thread.start();
     }
-
-
-    @FXML
-    void restoreClicked() {
-        wasteProgress.setProgress(0);
-        fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
-    }
-
-
 
 }

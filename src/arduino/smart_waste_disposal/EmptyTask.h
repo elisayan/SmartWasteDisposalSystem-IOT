@@ -11,7 +11,8 @@ public:
   void tick();
 
 private:
-  enum { TEST } state;
+  enum { EMPTYING,
+         MAINTENANCE } state;
 
   SmartWastePlant* pPlant;
   LCDDisplayI2C* lcd;

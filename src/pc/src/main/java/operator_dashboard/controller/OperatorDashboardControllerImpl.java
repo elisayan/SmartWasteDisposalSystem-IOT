@@ -1,6 +1,7 @@
 package operator_dashboard.controller;
 
 import operator_dashboard.communication.SerialCommChannel;
+import operator_dashboard.view.OperatorDashboardSceneController;
 import operator_dashboard.view.OperatorDashboardView;
 
 public class OperatorDashboardControllerImpl implements OperatorDashboardController{
@@ -9,10 +10,10 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     private static final int RATE = 9600;
     private static final long REBOOTING_TIME = 4000;
 
-    private OperatorDashboardView view;
+    private OperatorDashboardSceneController view;
     private SerialCommChannel channel;
 
-    public OperatorDashboardControllerImpl(OperatorDashboardView view) throws Exception {
+    public OperatorDashboardControllerImpl(OperatorDashboardSceneController view) throws Exception {
         this.view = view;
         this.channel = new SerialCommChannel(PORT, RATE);
 
@@ -21,10 +22,19 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
         System.out.println("Ready.");
     }
 
-
     @Override
     public void receiveMessage(String message) {
+        switch (message){
+            case "ALARM":
+                this.view.updateStatus("");
+                break;
 
+            case "MAINTENANCE":
+                break;
+
+            default:
+                break;
+        }
     }
 
     @Override

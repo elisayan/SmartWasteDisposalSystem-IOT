@@ -69,7 +69,7 @@ void ReceivingWasteTask::tick() {
 
     case ALARM:
       if (pPlant->isReadyForRestore()) {
-        //Serial.println("Ready for operatore to restore the system...");
+        Serial.println("ALARM");
         pPlant->alarmOn();
         lcd->problemDetected();
         state = INIT;
