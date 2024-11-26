@@ -34,8 +34,8 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @FXML
     void initialize() throws Exception {
         this.controller = new OperatorDashboardControllerImpl(this);
-        //this.restoreButton.setDisable(true);
-        //this.emptyButton.setDisable(true);
+        this.restoreButton.setDisable(true);
+        this.emptyButton.setDisable(true);
         this.temperatureLabel.setText("");
         this.stateLabel.setText("");
         this.wasteProgress.setProgress(0);
@@ -43,16 +43,18 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     }
 
     @FXML
-    void emptyClicked() {
+    void emptyClicked() throws Exception {
         if (this.wasteProgress.getProgress() == 1) {
             animateProgress(1, 0, -0.1);
+            handledError();
         }
     }
 
     @FXML
-    void restoreClicked() {
+    void restoreClicked() throws Exception {
         this.wasteProgress.setProgress(0);
         this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
+        handledError();
     }
 
     @Override
@@ -62,7 +64,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     }
 
     @Override
-    public void handleMaintenance() throws Exception {
+    public void handledError() throws Exception {
         if (this.wasteProgress.getProgress() == 0) {
             this.controller.sendMessage();
             this.initialize();
@@ -82,6 +84,11 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @Override
     public void updateStatus(String msg) {
         this.stateLabel.setText(msg);
+    }
+
+    @Override
+    public void updateTemperature(float temperature) {
+        this.temperatureLabel.setText(String.valueOf(temperature));
     }
 
     private void animateProgress(double start, double end, double step) {

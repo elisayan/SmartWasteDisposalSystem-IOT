@@ -25,11 +25,18 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     @Override
     public void receiveMessage(String message) {
         switch (message){
+            case "FILLING":
+                this.view.fillContainer();
+                break;
+
             case "ALARM":
+                this.view.enableRestoreButton();
                 this.view.updateStatus("");
                 break;
 
             case "MAINTENANCE":
+                this.view.enableEmptyButton();
+                this.view.updateStatus("");
                 break;
 
             default:
@@ -40,5 +47,11 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     @Override
     public void sendMessage() {
         this.channel.sendMsg("Maintenance done!");
+    }
+
+    private void getTemperature(String message){
+        final String[] data = message.split(": ");
+        final float temperature = Float.parseFloat(data[1]);
+        this.view.updateTemperature(temperature);
     }
 }
