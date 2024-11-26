@@ -26,7 +26,6 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     public void receiveMessage(String message) {
         switch (message) {
             case "SPILLING":
-                System.out.println("Received SPILLING message");
                 this.view.fillContainer();
                 break;
 
