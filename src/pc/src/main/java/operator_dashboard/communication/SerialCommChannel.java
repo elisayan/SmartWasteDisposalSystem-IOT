@@ -6,14 +6,14 @@ import operator_dashboard.controller.OperatorDashboardController;
 
 public class SerialCommChannel implements CommChannel, SerialPortEventListener {
 
-    private SerialPort serialPort;
-    private BlockingQueue<String> queue;
-    private StringBuffer currentMsg = new StringBuffer("");
+    private final SerialPort serialPort;
+    private final BlockingQueue<String> queue;
+    private StringBuffer currentMsg = new StringBuffer();
     private final OperatorDashboardController controller;
 
     public SerialCommChannel(String port, int rate, final OperatorDashboardController controller) throws Exception {
         this.controller = controller;
-        queue = new ArrayBlockingQueue<String>(100);
+        queue = new ArrayBlockingQueue<>(100);
 
         serialPort = new SerialPort(port);
         serialPort.openPort();

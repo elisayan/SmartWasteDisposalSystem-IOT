@@ -2,7 +2,6 @@ package operator_dashboard.controller;
 
 import operator_dashboard.communication.SerialCommChannel;
 import operator_dashboard.view.OperatorDashboardSceneController;
-import operator_dashboard.view.OperatorDashboardView;
 
 public class OperatorDashboardControllerImpl implements OperatorDashboardController {
 
