@@ -21,6 +21,9 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     private Button restoreButton;
 
     @FXML
+    private Label stateLabel;
+
+    @FXML
     private Label temperatureLabel;
 
     @FXML
@@ -34,6 +37,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         //this.restoreButton.setDisable(true);
         //this.emptyButton.setDisable(true);
         this.temperatureLabel.setText("");
+        this.stateLabel.setText("");
         this.wasteProgress.setProgress(0);
         this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
@@ -77,7 +81,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
 
     @Override
     public void updateStatus(String msg) {
-
+        this.stateLabel.setText(msg);
     }
 
     private void animateProgress(double start, double end, double step) {
