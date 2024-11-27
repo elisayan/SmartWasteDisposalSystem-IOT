@@ -13,7 +13,7 @@ SmartWastePlant::SmartWastePlant() {
   enableInterrupt(PIR, wakeUp, RISING);
   enableInterrupt(SONAR_ECHO, wakeUp, RISING);
   enableInterrupt(SONAR_TRIG, wakeUp, RISING);
-  enableInterrupt(LM35, wakeUp, RISING);
+  enableInterrupt(TMP36, wakeUp, RISING);
 }
 
 void SmartWastePlant::init() {
@@ -24,7 +24,7 @@ void SmartWastePlant::init() {
   pLed2 = new Led(LED2);
   pPir = new Pir(PIR);
   pSonar = new Sonar(SONAR_ECHO, SONAR_TRIG);
-  pTemp = new TempSensorLM35(LM35);
+  pTemp = new TempSensorTMP36(TMP36);
 
   Serial.println("Calibrating pir sensor...");
   pPir->calibrate();

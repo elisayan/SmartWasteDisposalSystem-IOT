@@ -12,6 +12,8 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     private final OperatorDashboardSceneController view;
     private final SerialCommChannel channel;
 
+    private boolean stop = false;
+
     public OperatorDashboardControllerImpl(OperatorDashboardSceneController view) throws Exception {
         this.view = view;
         this.channel = new SerialCommChannel(PORT, RATE, this);
@@ -25,7 +27,12 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     public void receiveMessage(String message) {
         switch (message) {
             case "SPILLING":
+                stop = false;
                 this.view.fillContainer();
+                break;
+
+            case "STOP":
+                stop = true;
                 break;
 
             case "ALARM":
@@ -46,6 +53,11 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     @Override
     public void sendMessage() {
         this.channel.sendMsg("Maintenance done!");
+    }
+
+    @Override
+    public boolean isStoppedReceiving() {
+        return stop;
     }
 
     private void getTemperature(String message) {

@@ -1,10 +1,10 @@
 #ifndef __TEMP_SENSOR_LM35__
 #define __TEMP_SENSOR_LM35__
 
-class TempSensorLM35: public TempSensor {
+class TempSensorTMP36: public TempSensor {
 
 public:
-  TempSensorLM35(int pin);	
+  TempSensorTMP36(int pin);	
   virtual float getTemperature();
   
 private:

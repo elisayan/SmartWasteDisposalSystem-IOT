@@ -27,9 +27,7 @@ void ReceivingWasteTask::tick() {
       if (pPlant->isReceivingWaste()) {
         Serial.println("SPILLING");
         if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME1) {
-          if (pPlant->isDoorClosed()) {
-            Serial.println("Close button clicked");
-          }
+          Serial.println("STOP");
           pPlant->wasteReceived();
           pPlant->closeDoor();
           lcd->wasteReceived();

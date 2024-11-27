@@ -38,7 +38,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         this.emptyButton.setDisable(true);
         this.temperatureLabel.setText("");
         this.stateLabel.setText("");
-        this.wasteProgress.setProgress(0);
+        this.wasteProgress.setProgress(1);
         this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
 
@@ -59,8 +59,25 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
 
     @Override
     public void fillContainer() {
-        //TODO: interrompere il riempimento nel momento in cui chiude la porta
-        animateProgress(0, 1, 0.1);
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws InterruptedException {
+                if (wasteProgress.getProgress() == 1) {
+                    while(controller.isStoppedReceiving()) {
+                        Platform.runLater(() -> {
+                            wasteProgress.setProgress(wasteProgress.getProgress() + 0.1);
+                            fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
+                        });
+                        Thread.sleep(1000);
+                    }
+                }
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     @Override
@@ -112,6 +129,10 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    private boolean isStoppedfilling(){
+        return this.controller.isStoppedReceiving();
     }
 
 }

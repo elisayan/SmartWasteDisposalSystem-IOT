@@ -8,7 +8,7 @@
 #include "Led.h"
 #include "Pir.h"
 #include "Sonar.h"
-#include "TempSensorLM35.h"
+#include "TempSensorTMP36.h"
 
 class SmartWastePlant {
 public:
@@ -66,7 +66,7 @@ private:
   Led* pLed2;
   Pir* pPir;
   Sonar* pSonar;
-  TempSensorLM35* pTemp;
+  TempSensorTMP36* pTemp;
 };
 
 #endif

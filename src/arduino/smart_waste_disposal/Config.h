@@ -14,7 +14,7 @@
 #define SONAR_TRIG 12
 #define SONAR_ECHO 13
 
-#define LM35 A0
+#define TMP36 A0
 
 #define TIME3  15000
 
