@@ -3,7 +3,7 @@
 
 #include "TempSensor.h"
 
-class TempSensorTMP36: public TempSensor {
+class TempSensorTMP36 : public TempSensor {
 public:
   TempSensorTMP36(int p);
   virtual float getTemperature();

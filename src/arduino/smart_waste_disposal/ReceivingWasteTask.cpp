@@ -76,10 +76,10 @@ void ReceivingWasteTask::tick() {
       break;
   }
 
-  // if (isTemperatureExceed()) {
-  //   pPlant->waitForOperatorRestore();
-  //   state = ALARM;
-  // }
+  if (isTemperatureExceed()) {
+    pPlant->waitForOperatorRestore();
+    state = ALARM;
+  }
 }
 
 bool ReceivingWasteTask::isFull() {
