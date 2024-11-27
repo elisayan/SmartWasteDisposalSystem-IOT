@@ -19,6 +19,8 @@ void ReadyTask::tick() {
         pPlant->setAvailable();
         pPlant->closeDoor();
         lcd->enterWaste();
+        Serial.print("distance: ");
+        Serial.println(pPlant->getCurrentWasteDistance());
         state = WAITING;
       }
       break;

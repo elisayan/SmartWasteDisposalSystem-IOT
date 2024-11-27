@@ -12,7 +12,9 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     private final OperatorDashboardSceneController view;
     private final SerialCommChannel channel;
 
-    private boolean stop = false;
+    private boolean start = true;
+    private float containerIntensity;
+    private float wasteLevel;
 
     public OperatorDashboardControllerImpl(OperatorDashboardSceneController view) throws Exception {
         this.view = view;
@@ -25,28 +27,34 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
     @Override
     public void receiveMessage(String message) {
-        switch (message) {
-            case "SPILLING":
-                stop = false;
-                this.view.fillContainer();
-                break;
+        if (message.startsWith("temperature: ")) {
+            this.getTemperature(message);
+        } else if (message.startsWith("distance: ")) {
+            if (start){
+                this.start = false;
+                this.containerIntensity = this.getDistance(message);
+            } else {
+                this.wasteLevel = this.getDistance(message);
+            }
+        } else {
+            switch (message) {
+                case "SPILLING":
+                    this.view.fillContainer(this.wasteLevel, this.containerIntensity);
+                    break;
 
-            case "STOP":
-                stop = true;
-                break;
+                case "ALARM":
+                    this.view.enableRestoreButton();
+                    this.view.updateStatus("");
+                    break;
 
-            case "ALARM":
-                this.view.enableRestoreButton();
-                this.view.updateStatus("");
-                break;
+                case "MAINTENANCE":
+                    this.view.enableEmptyButton();
+                    this.view.updateStatus("");
+                    break;
 
-            case "MAINTENANCE":
-                this.view.enableEmptyButton();
-                this.view.updateStatus("");
-                break;
-
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -55,14 +63,16 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
         this.channel.sendMsg("Maintenance done!");
     }
 
-    @Override
-    public boolean isStoppedReceiving() {
-        return stop;
-    }
-
     private void getTemperature(String message) {
         final String[] data = message.split(": ");
         final float temperature = Float.parseFloat(data[1]);
         this.view.updateTemperature(temperature);
+    }
+
+    private float getDistance(String message) {
+        final String[] data = message.split(": ");
+        //final float distanceInMeters = Float.parseFloat(data[1]);
+        //this.view.updateContainer(distanceInMeters);
+        return Float.parseFloat(data[1]);
     }
 }

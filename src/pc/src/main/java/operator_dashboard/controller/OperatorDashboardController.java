@@ -5,6 +5,4 @@ public interface OperatorDashboardController {
     void receiveMessage(String message);
 
     void sendMessage();
-
-    boolean isStoppedReceiving();
 }

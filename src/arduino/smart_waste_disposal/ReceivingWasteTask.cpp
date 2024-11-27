@@ -26,6 +26,8 @@ void ReceivingWasteTask::tick() {
     case SPILLING:
       if (pPlant->isReceivingWaste()) {
         Serial.println("SPILLING");
+        Serial.print("distance: ");
+        Serial.println(pPlant->getCurrentWasteDistance());
         if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME1) {
           Serial.println("STOP");
           pPlant->wasteReceived();

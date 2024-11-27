@@ -38,7 +38,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         this.emptyButton.setDisable(true);
         this.temperatureLabel.setText("");
         this.stateLabel.setText("");
-        this.wasteProgress.setProgress(1);
+        this.wasteProgress.setProgress(0);
         this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
 
@@ -58,26 +58,8 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     }
 
     @Override
-    public void fillContainer() {
-        Task<Void> task = new Task<>() {
-            @Override
-            protected Void call() throws InterruptedException {
-                if (wasteProgress.getProgress() == 1) {
-                    while(controller.isStoppedReceiving()) {
-                        Platform.runLater(() -> {
-                            wasteProgress.setProgress(wasteProgress.getProgress() + 0.1);
-                            fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
-                        });
-                        Thread.sleep(1000);
-                    }
-                }
-                return null;
-            }
-        };
-
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
+    public void fillContainer(float wasteLevel, float containerIntensity) {
+        animateProgress(0, containerIntensity - wasteLevel, 0.1);
     }
 
     @Override
@@ -105,7 +87,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
 
     @Override
     public void updateTemperature(float temperature) {
-        this.temperatureLabel.setText(String.valueOf(temperature));
+        Platform.runLater(() -> this.temperatureLabel.setText(String.valueOf(temperature)));
     }
 
     private void animateProgress(double start, double end, double step) {
@@ -130,9 +112,4 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         thread.setDaemon(true);
         thread.start();
     }
-
-    private boolean isStoppedfilling(){
-        return this.controller.isStoppedReceiving();
-    }
-
 }

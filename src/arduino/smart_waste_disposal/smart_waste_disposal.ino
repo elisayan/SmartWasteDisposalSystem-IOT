@@ -38,6 +38,8 @@ void setup() {
 }
 
 void loop() {
+  Serial.print("temperature: ");
+  Serial.println(pSmartWastePlant->getCurrentTemperature());
   //Serial.println(pSmartWastePlant->getCurrentTemperature());
   //Serial.println(pSmartWastePlant->getCurrentWasteDistance());
   //Serial.println(pSmartWastePlant->detectedUserPresence());
