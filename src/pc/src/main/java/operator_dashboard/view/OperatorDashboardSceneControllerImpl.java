@@ -59,7 +59,9 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
 
     @Override
     public void fillContainer(float wasteLevel, float containerIntensity) {
-        animateProgress(0, containerIntensity - wasteLevel, 0.1);
+        double targetFillPercentage = 1.0 - (wasteLevel / containerIntensity);
+        targetFillPercentage = Math.min(1.0, targetFillPercentage);
+        animateProgress(wasteProgress.getProgress(), targetFillPercentage, 0.1);
     }
 
     @Override

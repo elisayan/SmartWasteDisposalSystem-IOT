@@ -29,7 +29,6 @@ void ReceivingWasteTask::tick() {
         Serial.print("distance: ");
         Serial.println(pPlant->getCurrentWasteDistance());
         if (pPlant->isDoorClosed() || millis() - timeSpilling >= TIME1) {
-          Serial.println("STOP");
           pPlant->wasteReceived();
           pPlant->closeDoor();
           lcd->wasteReceived();
@@ -62,6 +61,7 @@ void ReceivingWasteTask::tick() {
     case FULL:
       //TODO waiting operator for empty the container
       if (pPlant->isReadyForEmpty()) {
+        Serial.println("FULL");
         pPlant->alarmOn();
         lcd->containerFull();
         state = INIT;

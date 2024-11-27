@@ -7,7 +7,7 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
     private static final String PORT = "COM3";
     private static final int RATE = 9600;
-    private static final long REBOOTING_TIME = 4000;
+    private static final long REBOOTING_TIME = 10000;
 
     private final OperatorDashboardSceneController view;
     private final SerialCommChannel channel;
@@ -44,12 +44,12 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
                 case "ALARM":
                     this.view.enableRestoreButton();
-                    this.view.updateStatus("");
+                    this.view.updateStatus("Restore the system");
                     break;
 
-                case "MAINTENANCE":
+                case "FULL":
                     this.view.enableEmptyButton();
-                    this.view.updateStatus("");
+                    this.view.updateStatus("Empty the container");
                     break;
 
                 default:
