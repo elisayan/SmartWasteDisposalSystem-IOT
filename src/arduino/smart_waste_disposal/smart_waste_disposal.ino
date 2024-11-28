@@ -29,12 +29,14 @@ void setup() {
   sched.addTask(ready);
 
   Task* receive = new ReceivingWasteTask(pSmartWastePlant, lcd);
-  receive->init(100);
+  receive->init(200);
   sched.addTask(receive);
 
   Task* empty = new EmptyTask(pSmartWastePlant, lcd);
   empty->init(100);
   sched.addTask(empty);
+
+  
 }
 
 void loop() {

@@ -47,8 +47,8 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @FXML
     void emptyClicked() throws Exception {
         if (this.wasteProgress.getProgress() == 1) {
-            animateProgress(1, 0, -0.1, EMPTY_SPEED);
-            handledError();
+            this.animateProgress(1, 0, -0.1, EMPTY_SPEED);
+            this.handledError();
         }
     }
 
@@ -60,11 +60,12 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     }
 
     @Override
-    public void fillContainer(float emptyDistance, float containerHeight) {
-        if (emptyDistance <= containerHeight){
-            float fillingQuantity = (containerHeight - emptyDistance);
+    public void fillContainer(float wasteDistance, float containerHeight) {
+        if (wasteDistance <= containerHeight){
+            float fillingQuantity = (containerHeight - wasteDistance);
             float fillingPercentage = fillingQuantity / containerHeight;
-            this.animateProgress(this.wasteProgress.getProgress(), fillingPercentage, 0.01, FILLING_SPEED);
+            this.wasteProgress.setProgress(fillingPercentage);
+            Platform.runLater(() -> this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100))));
         }
     }
 
@@ -120,5 +121,4 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         thread.setDaemon(true);
         thread.start();
     }
-
 }
