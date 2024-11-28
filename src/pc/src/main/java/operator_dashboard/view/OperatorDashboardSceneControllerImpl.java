@@ -11,6 +11,8 @@ import operator_dashboard.controller.OperatorDashboardControllerImpl;
 
 public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSceneController {
 
+    private static final int FILLING_SPEED = 100;
+    private static final int EMPTY_SPEED = 1000;
     @FXML
     private Button emptyButton;
 
@@ -45,7 +47,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @FXML
     void emptyClicked() throws Exception {
         if (this.wasteProgress.getProgress() == 1) {
-            animateProgress(1, 0, -0.1);
+            animateProgress(1, 0, -0.1, EMPTY_SPEED);
             handledError();
         }
     }
@@ -54,14 +56,16 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     void restoreClicked() throws Exception {
         this.wasteProgress.setProgress(0);
         this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
-        handledError();
+        this.handledError();
     }
 
     @Override
-    public void fillContainer(float wasteLevel, float containerIntensity) {
-        double targetFillPercentage = 1.0 - (wasteLevel / containerIntensity);
-        targetFillPercentage = Math.min(1.0, targetFillPercentage);
-        animateProgress(wasteProgress.getProgress(), targetFillPercentage, 0.1);
+    public void fillContainer(float emptyDistance, float containerHeight) {
+        if (emptyDistance <= containerHeight){
+            float fillingQuantity = (containerHeight - emptyDistance);
+            float fillingPercentage = fillingQuantity / containerHeight;
+            this.animateProgress(this.wasteProgress.getProgress(), fillingPercentage, 0.01, FILLING_SPEED);
+        }
     }
 
     @Override
@@ -84,7 +88,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
 
     @Override
     public void updateStatus(String msg) {
-        this.stateLabel.setText(msg);
+        Platform.runLater(() -> this.stateLabel.setText(msg));
     }
 
     @Override
@@ -92,26 +96,29 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         Platform.runLater(() -> this.temperatureLabel.setText(String.valueOf(temperature)));
     }
 
-    private void animateProgress(double start, double end, double step) {
+    private void animateProgress(double start, double end, double step, int speed) {
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws InterruptedException {
                 double progress = start;
-                while ((step > 0 && progress <= end) || (step < 0 && progress >= end)) {
+
+                while (progress < end) {
+                    progress = Math.min(progress + step, end);
                     double currentProgress = progress;
+
                     Platform.runLater(() -> {
                         wasteProgress.setProgress(currentProgress);
                         fillingPercentageLabel.setText(String.format("%d%%", (int) (currentProgress * 100)));
                     });
-                    Thread.sleep(1000);
-                    progress += step;
+
+                    Thread.sleep(speed);
                 }
                 return null;
             }
         };
-
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
     }
+
 }

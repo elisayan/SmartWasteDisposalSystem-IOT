@@ -3,7 +3,7 @@
 
 #define TIME1 10000
 #define TIME2 5000
-#define DISTANCE1 0.05
+#define DISTANCE1 0.02
 #define MAX_TEMPERATURE 100
 
 ReceivingWasteTask::ReceivingWasteTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
@@ -45,13 +45,13 @@ void ReceivingWasteTask::tick() {
       break;
 
     case CLOSED:
-      Serial.println("Door closed");
+      //Serial.println("Door closed");
       if (pPlant->isWasteReceived()) {
         if (isFull()) {
           pPlant->readyForEmpty();
           state = FULL;
         } else {
-          Serial.println("Back to receive waste");
+          //Serial.println("Back to receive waste");
           pPlant->setIdle();
           state = INIT;
         }

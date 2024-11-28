@@ -27,14 +27,14 @@ void ReadyTask::tick() {
 
     case SLEEP:
       if (pPlant->detectedUserPresence()) {
-        Serial.println("User detected, waking up...");
+        Serial.println("AWAKE");
         lcd->turnOn();
         lcd->enterWaste();
         pPlant->resumeFromSleeping();
         startTime = millis();
         state = WAITING;
       } else {
-        Serial.println("Sleeping...");
+        Serial.println("SLEEP");
       }
       break;
 
@@ -46,7 +46,7 @@ void ReadyTask::tick() {
       }
 
       if (pPlant->isDoorOpened()) {
-        Serial.println("Open button clicked");
+        //Serial.println("OPEN");
         pPlant->openDoor();
         pPlant->readyForReceiveWaste();
         state = INIT;
