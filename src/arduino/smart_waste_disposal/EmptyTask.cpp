@@ -4,14 +4,17 @@
 EmptyTask::EmptyTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
   this->lcd = lcd;
+  state = INIT;
 }
 
 void EmptyTask::tick() {
   switch (state) {
     case INIT:
       if (pPlant->isReadyForEmpty()) {
+        Serial.println("FULL");
+        pPlant->alarmOn();
+        lcd->containerFull();
         pPlant->emptying();
-        pPlant->setAvailable();
         state = EMPTYING;
       }
       break;

@@ -39,7 +39,7 @@ void ReceivingWasteTask::tick() {
         if (isFull()) {
           pPlant->closeDoor();
           pPlant->readyForEmpty();
-          state = FULL;
+          state = INIT;
         }
       }
       break;
@@ -48,19 +48,9 @@ void ReceivingWasteTask::tick() {
       if (pPlant->isWasteReceived()) {
         if (isFull()) {
           pPlant->readyForEmpty();
-          state = FULL;
         } else {
           pPlant->setIdle();
-          state = INIT;
         }
-      }
-      break;
-
-    case FULL:
-      if (pPlant->isReadyForEmpty()) {
-        Serial.println("FULL");
-        pPlant->alarmOn();
-        lcd->containerFull();
         state = INIT;
       }
       break;
