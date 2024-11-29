@@ -66,7 +66,6 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
     @Override
     public void sendMessage() {
-        System.out.println("Maintenance done!");
         this.channel.sendMsg("Maintenance done!");
     }
 
