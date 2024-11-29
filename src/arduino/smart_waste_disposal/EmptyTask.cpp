@@ -11,6 +11,7 @@ void EmptyTask::tick() {
     case INIT:
       if (pPlant->isReadyForEmpty()) {
         pPlant->emptying();
+        pPlant->setAvailable();
         state = EMPTYING;
       }
       break;

@@ -12,6 +12,7 @@ import operator_dashboard.controller.OperatorDashboardControllerImpl;
 public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSceneController {
 
     private static final int EMPTY_SPEED = 1000;
+    private static final float MAX_WASTE_LIMIT = 0.05F;
 
     @FXML
     private Button emptyButton;
@@ -81,8 +82,10 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @Override
     public void fillContainer(float wasteDistance, float containerHeight) {
         if (wasteDistance <= containerHeight) {
-            float fillingQuantity = (containerHeight - wasteDistance);
-            float fillingPercentage = fillingQuantity / containerHeight;
+            float maxContainerHeight = containerHeight - MAX_WASTE_LIMIT;
+            float maxWasteDistance = wasteDistance-MAX_WASTE_LIMIT;
+            float fillingQuantity = (maxContainerHeight - maxWasteDistance);
+            float fillingPercentage = fillingQuantity / maxContainerHeight;
             this.wasteProgress.setProgress(fillingPercentage);
             Platform.runLater(() -> this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100))));
         }

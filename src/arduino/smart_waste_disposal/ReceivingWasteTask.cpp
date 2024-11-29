@@ -3,7 +3,7 @@
 
 #define TIME1 10000
 #define TIME2 5000
-#define DISTANCE1 0.02
+#define DISTANCE1 0.05
 #define MAX_TEMPERATURE 100
 
 ReceivingWasteTask::ReceivingWasteTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
