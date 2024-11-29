@@ -31,15 +31,20 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @FXML
     private ProgressBar wasteProgress;
 
-    private OperatorDashboardController controller;
+    private final OperatorDashboardController controller;
+
+    public OperatorDashboardSceneControllerImpl() throws Exception {
+        this.controller = new OperatorDashboardControllerImpl(this);
+    }
 
     @FXML
-    void initialize() throws Exception {
-        this.controller = new OperatorDashboardControllerImpl(this);
+    void initialize() {
         this.restoreButton.setDisable(true);
         this.emptyButton.setDisable(true);
-        this.temperatureLabel.setText("");
-        this.stateLabel.setText("");
+        Platform.runLater(() -> {
+            this.temperatureLabel.setText("");
+            this.stateLabel.setText("");
+        });
         this.wasteProgress.setProgress(0);
         this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
     }
@@ -49,17 +54,15 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                //if (wasteProgress.getProgress() == 1) {
-                    for (int i = (int) (wasteProgress.getProgress()*10); i >= 0; i--) {
-                        double progress = (double) i / 10;
-                        Platform.runLater(() -> {
-                            wasteProgress.setProgress(progress);
-                            fillingPercentageLabel.setText(String.format("%d%%", (int) (progress * 100)));
-                        });
-                        Thread.sleep(EMPTY_SPEED);
-                    }
-                    handledError();
-                //}
+                for (int i = (int) (wasteProgress.getProgress() * 10); i >= 0; i--) {
+                    double progress = (double) i / 10;
+                    Platform.runLater(() -> {
+                        wasteProgress.setProgress(progress);
+                        fillingPercentageLabel.setText(String.format("%d%%", (int) (progress * 100)));
+                    });
+                    Thread.sleep(EMPTY_SPEED);
+                }
+                handledError();
                 return null;
             }
         };
@@ -69,7 +72,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     }
 
     @FXML
-    void restoreClicked() throws Exception {
+    void restoreClicked() {
         this.wasteProgress.setProgress(0);
         this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100)));
         this.handledError();
@@ -77,19 +80,16 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
 
     @Override
     public void fillContainer(float wasteDistance, float containerHeight) {
-        if (wasteDistance <= containerHeight){
-            System.out.println("minore");
+        if (wasteDistance <= containerHeight) {
             float fillingQuantity = (containerHeight - wasteDistance);
             float fillingPercentage = fillingQuantity / containerHeight;
             this.wasteProgress.setProgress(fillingPercentage);
             Platform.runLater(() -> this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100))));
-        } else{
-            System.out.println("maggiore");
         }
     }
 
     @Override
-    public void handledError() throws Exception {
+    public void handledError() {
         if (this.wasteProgress.getProgress() == 0) {
             this.controller.sendMessage();
             this.initialize();
@@ -97,13 +97,13 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     }
 
     @Override
-    public void enableEmptyButton() {
-        this.emptyButton.setDisable(false);
+    public void setEmptyButtonState(boolean state) {
+        this.emptyButton.setDisable(state);
     }
 
     @Override
-    public void enableRestoreButton() {
-        this.restoreButton.setDisable(false);
+    public void setRestoreButtonState(boolean state) {
+        this.restoreButton.setDisable(state);
     }
 
     @Override

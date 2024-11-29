@@ -45,13 +45,11 @@ void ReceivingWasteTask::tick() {
       break;
 
     case CLOSED:
-      //Serial.println("Door closed");
       if (pPlant->isWasteReceived()) {
         if (isFull()) {
           pPlant->readyForEmpty();
           state = FULL;
         } else {
-          //Serial.println("Back to receive waste");
           pPlant->setIdle();
           state = INIT;
         }
@@ -59,7 +57,6 @@ void ReceivingWasteTask::tick() {
       break;
 
     case FULL:
-      //TODO waiting operator for empty the container
       if (pPlant->isReadyForEmpty()) {
         Serial.println("FULL");
         pPlant->alarmOn();
@@ -78,10 +75,10 @@ void ReceivingWasteTask::tick() {
       break;
   }
 
-  if (isTemperatureExceed()) {
-    pPlant->waitForOperatorRestore();
-    state = ALARM;
-  }
+  // if (isTemperatureExceed()) {
+  //   pPlant->waitForOperatorRestore();
+  //   state = ALARM;
+  // }
 }
 
 bool ReceivingWasteTask::isFull() {

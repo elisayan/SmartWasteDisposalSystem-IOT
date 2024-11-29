@@ -38,17 +38,23 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
             }
         } else {
             switch (message) {
+                case "READY":
+                    this.view.setEmptyButtonState(true);
+                    this.view.setEmptyButtonState(true);
+                    this.view.updateStatus("Ready for receive waste");
+                    break;
+
                 case "SPILLING":
                     this.view.fillContainer(this.wasteLevel, this.containerIntensity);
                     break;
 
                 case "ALARM":
-                    this.view.enableRestoreButton();
+                    this.view.setRestoreButtonState(false);
                     this.view.updateStatus("Restore the system");
                     break;
 
                 case "FULL":
-                    this.view.enableEmptyButton();
+                    this.view.setEmptyButtonState(false);
                     this.view.updateStatus("Empty the container");
                     break;
 
@@ -60,6 +66,7 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
     @Override
     public void sendMessage() {
+        System.out.println("Maintenance done!");
         this.channel.sendMsg("Maintenance done!");
     }
 

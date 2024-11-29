@@ -5,9 +5,9 @@ public interface OperatorDashboardSceneController {
 
     void handledError() throws Exception;
 
-    void enableEmptyButton();
+    void setEmptyButtonState(boolean state);
 
-    void enableRestoreButton();
+    void setRestoreButtonState(boolean state);
 
     void updateStatus(String msg);
 

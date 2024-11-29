@@ -4,29 +4,30 @@
 EmptyTask::EmptyTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
   this->lcd = lcd;
-  MsgService.init();
 }
 
 void EmptyTask::tick() {
   switch (state) {
-    case EMPTYING:
+    case INIT:
       if (pPlant->isReadyForEmpty()) {
         pPlant->emptying();
-        if (MsgService.isMsgAvailable()) {
-          Msg* msg = MsgService.receiveMsg();
-          if (msg->getContent() == "Maintenance done!") {
-            pPlant->setIdle();
-          }
+        state = EMPTYING;
+      }
+      break;
+
+    case EMPTYING:
+      if (pPlant->isEmptying()) {
+        if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "Maintenance done!") {
+          state = DONE;
+          pPlant->emptied();
         }
       }
       break;
 
-    case MAINTENANCE:
-      if (pPlant->isReadyForRestore()) {
-        Serial.println("RESTORING");
-        //TODO check operator dashboard if restore is done
-        pPlant->setIdle();
-      }
+    case DONE:
+      pPlant->setIdle();
+      state = INIT;
+      Serial.println("READY");
       break;
   }
 }

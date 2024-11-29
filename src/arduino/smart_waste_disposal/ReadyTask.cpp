@@ -15,6 +15,7 @@ void ReadyTask::tick() {
   switch (state) {
     case INIT:
       if (pPlant->isIdle()) {
+        Serial.println("READY");
         startTime = millis();
         pPlant->setAvailable();
         pPlant->closeDoor();
