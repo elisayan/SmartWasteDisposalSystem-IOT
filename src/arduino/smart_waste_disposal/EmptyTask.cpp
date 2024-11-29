@@ -1,18 +1,23 @@
 #include "EmptyTask.h"
+#include "MsgService.h"
 
 EmptyTask::EmptyTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
   this->lcd = lcd;
+  MsgService.init();
 }
 
 void EmptyTask::tick() {
   switch (state) {
     case EMPTYING:
       if (pPlant->isReadyForEmpty()) {
-        Serial.println("EMPTYING");
         pPlant->emptying();
-        //TODO if empty is done
-        pPlant->setIdle();
+        if (MsgService.isMsgAvailable()) {
+          Msg* msg = MsgService.receiveMsg();
+          if (msg->getContent() == "Maintenance done!") {
+            pPlant->setIdle();
+          }
+        }
       }
       break;
 

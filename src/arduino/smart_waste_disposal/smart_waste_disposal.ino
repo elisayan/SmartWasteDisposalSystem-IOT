@@ -17,7 +17,7 @@ SmartWastePlant* pSmartWastePlant;
 LCDDisplayI2C* lcd;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   lcd = new LCDDisplayI2C();
 
   sched.init(100);

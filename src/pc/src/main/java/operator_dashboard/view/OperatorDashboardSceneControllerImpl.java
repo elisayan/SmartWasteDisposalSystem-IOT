@@ -11,8 +11,8 @@ import operator_dashboard.controller.OperatorDashboardControllerImpl;
 
 public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSceneController {
 
-    private static final int FILLING_SPEED = 100;
     private static final int EMPTY_SPEED = 1000;
+
     @FXML
     private Button emptyButton;
 
@@ -45,11 +45,27 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     }
 
     @FXML
-    void emptyClicked() throws Exception {
-        if (this.wasteProgress.getProgress() == 1) {
-            this.animateProgress(1, 0, -0.1, EMPTY_SPEED);
-            this.handledError();
-        }
+    void emptyClicked() {
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                //if (wasteProgress.getProgress() == 1) {
+                    for (int i = (int) (wasteProgress.getProgress()*10); i >= 0; i--) {
+                        double progress = (double) i / 10;
+                        Platform.runLater(() -> {
+                            wasteProgress.setProgress(progress);
+                            fillingPercentageLabel.setText(String.format("%d%%", (int) (progress * 100)));
+                        });
+                        Thread.sleep(EMPTY_SPEED);
+                    }
+                    handledError();
+                //}
+                return null;
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     @FXML
@@ -62,10 +78,13 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @Override
     public void fillContainer(float wasteDistance, float containerHeight) {
         if (wasteDistance <= containerHeight){
+            System.out.println("minore");
             float fillingQuantity = (containerHeight - wasteDistance);
             float fillingPercentage = fillingQuantity / containerHeight;
             this.wasteProgress.setProgress(fillingPercentage);
             Platform.runLater(() -> this.fillingPercentageLabel.setText(String.format("%d%%", (int) (wasteProgress.getProgress() * 100))));
+        } else{
+            System.out.println("maggiore");
         }
     }
 
@@ -95,30 +114,5 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @Override
     public void updateTemperature(float temperature) {
         Platform.runLater(() -> this.temperatureLabel.setText(String.valueOf(temperature)));
-    }
-
-    private void animateProgress(double start, double end, double step, int speed) {
-        Task<Void> task = new Task<>() {
-            @Override
-            protected Void call() throws InterruptedException {
-                double progress = start;
-
-                while (progress < end) {
-                    progress = Math.min(progress + step, end);
-                    double currentProgress = progress;
-
-                    Platform.runLater(() -> {
-                        wasteProgress.setProgress(currentProgress);
-                        fillingPercentageLabel.setText(String.format("%d%%", (int) (currentProgress * 100)));
-                    });
-
-                    Thread.sleep(speed);
-                }
-                return null;
-            }
-        };
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
     }
 }

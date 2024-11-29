@@ -6,7 +6,7 @@ import operator_dashboard.view.OperatorDashboardSceneController;
 public class OperatorDashboardControllerImpl implements OperatorDashboardController {
 
     private static final String PORT = "COM3";
-    private static final int RATE = 9600;
+    private static final int RATE = 115200;
     private static final long REBOOTING_TIME = 10000;
 
     private final OperatorDashboardSceneController view;
@@ -71,8 +71,6 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
 
     private float getDistance(String message) {
         final String[] data = message.split(": ");
-        //final float distanceInMeters = Float.parseFloat(data[1]);
-        //this.view.updateContainer(distanceInMeters);
         return Float.parseFloat(data[1]);
     }
 }
