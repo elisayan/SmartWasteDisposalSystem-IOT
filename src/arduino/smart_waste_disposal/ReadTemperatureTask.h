@@ -12,8 +12,8 @@ public:
 
 private:
   enum { MEASURE,
-         EXCEEDS,
-         MAINTENANCE } state;
+         ALARM,
+         DONE } state;
 
   SmartWastePlant* pPlant;
   LCDDisplayI2C* lcd;

@@ -11,8 +11,6 @@ public:
   void tick();
 
 private:
-  bool isSleepTimeOut();
-
   enum { INIT,
          SLEEP,
          WAITING } state;

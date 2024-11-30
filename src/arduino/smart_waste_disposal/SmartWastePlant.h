@@ -47,6 +47,9 @@ public:
   bool isDoorOpened();
   bool isDoorClosed();
 
+  int getState();
+  const char* getStateName();
+
 private:
   enum { IDLE,
          READY_FOR_RECEIVE_WASTE,

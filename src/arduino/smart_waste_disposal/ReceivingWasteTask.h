@@ -17,8 +17,7 @@ private:
 
   enum { INIT,
          SPILLING,
-         CLOSED,
-         ALARM } state;
+         CLOSED } state;
 
   unsigned long timeSpilling = 0.0;
 

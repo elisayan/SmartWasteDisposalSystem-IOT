@@ -39,7 +39,7 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
         } else {
             switch (message) {
                 case "READY":
-                    this.view.setEmptyButtonState(true);
+                    this.view.setRestoreButtonState(true);
                     this.view.setEmptyButtonState(true);
                     this.view.updateStatus("Ready for receive waste");
                     break;

@@ -39,15 +39,10 @@ void setup() {
   sched.addTask(empty);
 
   Task* temperature = new ReadTemperatureTask(pSmartWastePlant, lcd);
-  temperature->init(200);
+  temperature->init(500);
   sched.addTask(temperature);
 }
 
 void loop() {
-  // Serial.print("temperature: ");
-  // Serial.println(pSmartWastePlant->getCurrentTemperature());
-  //Serial.println(pSmartWastePlant->getCurrentTemperature());
-  //Serial.println(pSmartWastePlant->getCurrentWasteDistance());
-  //Serial.println(pSmartWastePlant->detectedUserPresence());
   sched.schedule();
 }

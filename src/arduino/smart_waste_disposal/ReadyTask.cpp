@@ -14,6 +14,7 @@ ReadyTask::ReadyTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
 void ReadyTask::tick() {
   switch (state) {
     case INIT:
+      Serial.println(pPlant->getStateName());
       if (pPlant->isIdle()) {
         Serial.println("READY");
         startTime = millis();
@@ -40,22 +41,17 @@ void ReadyTask::tick() {
       break;
 
     case WAITING:
-      if (isSleepTimeOut()) {
+      if (millis() - startTime >= TIME_SLEEP) {
         lcd->turnOff();
         pPlant->prepareToSleep();
         state = SLEEP;
       }
 
       if (pPlant->isDoorOpened()) {
-        //Serial.println("OPEN");
         pPlant->openDoor();
         pPlant->readyForReceiveWaste();
         state = INIT;
       }
       break;
   }
-}
-
-bool ReadyTask::isSleepTimeOut() {
-  return millis() - startTime >= TIME_SLEEP;
 }

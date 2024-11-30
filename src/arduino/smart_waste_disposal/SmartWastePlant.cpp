@@ -64,9 +64,7 @@ bool SmartWastePlant::isIdle() {
 }
 
 void SmartWastePlant::prepareToSleep() {
-  if (pLed2->isOn()) {
-    pLed1->switchOff();
-  } else {
+  if (!pLed2->isOn()) {
     pLed1->switchOn();
   }
   Serial.println("The system will enter in sleep mode in 3 second...");
@@ -158,4 +156,31 @@ bool SmartWastePlant::isDoorOpened() {
 
 bool SmartWastePlant::isDoorClosed() {
   return pCloseButton->isPressed();
+}
+
+int SmartWastePlant::getState() {
+    return state;
+}
+
+const char* SmartWastePlant::getStateName() {
+    switch (state) {
+        case IDLE:
+            return "IDLE";
+        case READY_FOR_RECEIVE_WASTE:
+            return "READY_FOR_RECEIVE_WASTE";
+        case RECEIVING_WASTE:
+            return "RECEIVING_WASTE";
+        case WASTE_RECEIVED:
+            return "WASTE_RECEIVED";
+        case READY_FOR_EMPTY:
+            return "READY_FOR_EMPTY";
+        case EMPTYING:
+            return "EMPTYING";
+        case EMPTIED:
+            return "EMPTIED";
+        case READY_FOR_RESTORE:
+            return "READY_FOR_RESTORE";
+        default:
+            return "UNKNOWN";
+    }
 }
