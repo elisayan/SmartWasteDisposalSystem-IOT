@@ -14,14 +14,17 @@ void EmptyTask::tick() {
         Serial.println("FULL");
         pPlant->alarmOn();
         lcd->containerFull();
-        pPlant->emptying();
-        state = EMPTYING;
+        if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "EMPTYING") {
+          pPlant->emptying();
+          pPlant->emptyWaste();
+          state = EMPTYING;
+        }
       }
       break;
 
     case EMPTYING:
       if (pPlant->isEmptying()) {
-        if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "Maintenance done!") {
+        if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "DONE") {
           state = DONE;
           pPlant->emptied();
         }

@@ -42,7 +42,12 @@ void SmartWastePlant::openDoor() {
 void SmartWastePlant::closeDoor() {
   pMotor->on();
   pMotor->setPosition(0);
-  //TODO off door
+}
+
+void SmartWastePlant::emptyWaste() {
+  pMotor->on();
+  pMotor->setPosition(-90);
+  pMotor->off();
 }
 
 void SmartWastePlant::setAvailable() {

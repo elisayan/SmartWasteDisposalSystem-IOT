@@ -17,6 +17,8 @@ private:
 
   SmartWastePlant* pPlant;
   LCDDisplayI2C* lcd;
+  unsigned long startOverheatTime;
+  float simTemp;
 };
 
 #endif

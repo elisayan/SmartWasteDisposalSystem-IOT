@@ -17,6 +17,7 @@ public:
 
   void openDoor();
   void closeDoor();
+  void emptyWaste();
   void setAvailable();
   void alarmOn();
 

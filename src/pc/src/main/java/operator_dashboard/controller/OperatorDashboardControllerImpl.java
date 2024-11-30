@@ -65,8 +65,13 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     }
 
     @Override
-    public void sendMessage() {
-        this.channel.sendMsg("Maintenance done!");
+    public void sendRestoreMessage() {
+        this.channel.sendMsg("DONE");
+    }
+
+    @Override
+    public void sendEmptyMessage() {
+        this.channel.sendMsg("EMPTYING");
     }
 
     private void getTemperature(String message) {

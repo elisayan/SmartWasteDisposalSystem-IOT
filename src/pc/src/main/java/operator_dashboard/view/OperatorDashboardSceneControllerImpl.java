@@ -52,6 +52,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
 
     @FXML
     void emptyClicked() {
+        this.controller.sendEmptyMessage();
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
@@ -83,7 +84,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     public void fillContainer(float wasteDistance, float containerHeight) {
         if (wasteDistance <= containerHeight) {
             float maxContainerHeight = containerHeight - MAX_WASTE_LIMIT;
-            float maxWasteDistance = wasteDistance-MAX_WASTE_LIMIT;
+            float maxWasteDistance = wasteDistance - MAX_WASTE_LIMIT;
             float fillingQuantity = (maxContainerHeight - maxWasteDistance);
             float fillingPercentage = fillingQuantity / maxContainerHeight;
             this.wasteProgress.setProgress(fillingPercentage);
@@ -94,7 +95,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @Override
     public void handledError() {
         if (this.wasteProgress.getProgress() == 0) {
-            this.controller.sendMessage();
+            this.controller.sendRestoreMessage();
             this.initialize();
         }
     }

@@ -1,39 +1,37 @@
 #include "ReadTemperatureTask.h"
 #include "MsgService.h"
 
-#define MAX_TEMPERATURE 25.0
+#define MAX_TEMPERATURE 30
+#define MAX_TEMP_TIME 5000
 
 ReadTemperatureTask::ReadTemperatureTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
   this->pPlant = pPlant;
   this->lcd = lcd;
   state = MEASURE;
+  simTemp = 32; //to remove
+  startOverheatTime = 0;
   MsgService.init();
 }
 
 void ReadTemperatureTask::tick() {
-  // Serial.print("Task State: ");
-  // Serial.println(state);
-  // Serial.print("System State: ");
-  // Serial.println(pPlant->getStateName());
+  unsigned long currentMillis = millis();
   
-  if (pPlant->isIdle() && state == MEASURE) {
-    return;
-  }
+  Serial.print("temperature: ");
+  Serial.println(pPlant->getCurrentTemperature());
 
   switch (state) {
-    // case INIT:
-
-    //   break;
-
     case MEASURE:
-      //if (!pPlant->isIdle()) {
-      Serial.print("temperature: ");
-      Serial.println(pPlant->getCurrentTemperature());
-      if (pPlant->getCurrentTemperature() >= MAX_TEMPERATURE) {
-        pPlant->waitForOperatorRestore();
-        state = ALARM;
+      //if (pPlant->getCurrentTemperature() >= MAX_TEMPERATURE) {
+      if (simTemp >= MAX_TEMPERATURE) {
+        if (startOverheatTime == 0) {
+          startOverheatTime = currentMillis;
+        } else if (currentMillis - startOverheatTime >= MAX_TEMP_TIME) {
+          pPlant->waitForOperatorRestore();
+          state = ALARM;
+        }
+      } else {
+        startOverheatTime = 0;
       }
-      //}
       break;
 
     case ALARM:
@@ -41,20 +39,18 @@ void ReadTemperatureTask::tick() {
         Serial.println("ALARM");
         pPlant->alarmOn();
         lcd->problemDetected();
-        if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "Maintenance done!") {
+        if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "DONE") {
           state = DONE;
+          simTemp = 25;
         }
-        // if (pPlant->getCurrentTemperature() < MAX_TEMPERATURE) {
-        //   state = DONE;
-        // }
       }
       break;
 
     case DONE:
       Serial.println("READY");
       pPlant->setIdle();
-      Serial.println(pPlant->getStateName());
       state = MEASURE;
+      startOverheatTime = 0;
       break;
   }
 }
