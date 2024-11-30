@@ -27,19 +27,19 @@ void setup() {
   pSmartWastePlant->init();
 
   Task* ready = new ReadyTask(pSmartWastePlant, lcd);
-  ready->init(100);
+  ready->init(200);
   sched.addTask(ready);
 
   Task* receive = new ReceivingWasteTask(pSmartWastePlant, lcd);
-  receive->init(200);
+  receive->init(300);
   sched.addTask(receive);
 
   Task* empty = new EmptyTask(pSmartWastePlant, lcd);
-  empty->init(100);
+  empty->init(400);
   sched.addTask(empty);
 
   Task* temperature = new ReadTemperatureTask(pSmartWastePlant, lcd);
-  temperature->init(500);
+  temperature->init(200);
   sched.addTask(temperature);
 }
 

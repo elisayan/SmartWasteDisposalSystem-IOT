@@ -21,8 +21,8 @@ void ReadTemperatureTask::tick() {
 
   switch (state) {
     case MEASURE:
-      //if (pPlant->getCurrentTemperature() >= MAX_TEMPERATURE) {
-      if (simTemp >= MAX_TEMPERATURE) {
+      if (pPlant->getCurrentTemperature() >= MAX_TEMPERATURE) {
+      //if (simTemp >= MAX_TEMPERATURE) {
         if (startOverheatTime == 0) {
           startOverheatTime = currentMillis;
         } else if (currentMillis - startOverheatTime >= MAX_TEMP_TIME) {
@@ -41,7 +41,7 @@ void ReadTemperatureTask::tick() {
         lcd->problemDetected();
         if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "DONE") {
           state = DONE;
-          simTemp = 25;
+          simTemp = 25;//to remove
         }
       }
       break;
