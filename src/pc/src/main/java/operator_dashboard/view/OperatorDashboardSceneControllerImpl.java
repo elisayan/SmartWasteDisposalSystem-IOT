@@ -95,7 +95,7 @@ public class OperatorDashboardSceneControllerImpl implements OperatorDashboardSc
     @Override
     public void handledError() {
         if (this.wasteProgress.getProgress() == 0) {
-            this.controller.sendRestoreMessage();
+            this.controller.sendDoneMessage();
             this.initialize();
         }
     }

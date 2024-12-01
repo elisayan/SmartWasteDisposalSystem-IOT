@@ -56,6 +56,7 @@ dependencies {
     }
 
     implementation("io.github.java-native:jssc:2.9.6")
+    implementation ("org.slf4j:slf4j-simple:1.7.30")
 
     val jUnitVersion = "5.11.3"
     // JUnit API and testing engine

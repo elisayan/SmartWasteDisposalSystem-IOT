@@ -4,7 +4,7 @@ public interface OperatorDashboardController {
 
     void receiveMessage(String message);
 
-    void sendRestoreMessage();
+    void sendDoneMessage();
 
     void sendEmptyMessage();
 }

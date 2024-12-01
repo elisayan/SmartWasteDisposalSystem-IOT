@@ -65,7 +65,7 @@ public class OperatorDashboardControllerImpl implements OperatorDashboardControl
     }
 
     @Override
-    public void sendRestoreMessage() {
+    public void sendDoneMessage() {
         this.channel.sendMsg("DONE");
     }
 
