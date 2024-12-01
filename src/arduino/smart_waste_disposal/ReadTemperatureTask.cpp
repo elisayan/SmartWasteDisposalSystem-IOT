@@ -8,7 +8,6 @@ ReadTemperatureTask::ReadTemperatureTask(SmartWastePlant* pPlant, LCDDisplayI2C*
   this->pPlant = pPlant;
   this->lcd = lcd;
   state = MEASURE;
-  simTemp = 32; //to remove
   startOverheatTime = 0;
   MsgService.init();
 }
@@ -22,7 +21,6 @@ void ReadTemperatureTask::tick() {
   switch (state) {
     case MEASURE:
       if (pPlant->getCurrentTemperature() >= MAX_TEMPERATURE) {
-      //if (simTemp >= MAX_TEMPERATURE) {
         if (startOverheatTime == 0) {
           startOverheatTime = currentMillis;
         } else if (currentMillis - startOverheatTime >= MAX_TEMP_TIME) {
@@ -41,7 +39,6 @@ void ReadTemperatureTask::tick() {
         lcd->problemDetected();
         if (MsgService.isMsgAvailable() && MsgService.receiveMsg()->getContent() == "DONE") {
           state = DONE;
-          simTemp = 25;//to remove
         }
       }
       break;
