@@ -1,7 +1,7 @@
 #include "ReadTemperatureTask.h"
 #include "MsgService.h"
 
-#define MAX_TEMPERATURE 30
+#define MAX_TEMPERATURE 40
 #define MAX_TEMP_TIME 5000
 
 ReadTemperatureTask::ReadTemperatureTask(SmartWastePlant* pPlant, LCDDisplayI2C* lcd) {
