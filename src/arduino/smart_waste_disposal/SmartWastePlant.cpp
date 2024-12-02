@@ -69,9 +69,6 @@ bool SmartWastePlant::isIdle() {
 }
 
 void SmartWastePlant::prepareToSleep() {
-  if (!pLed2->isOn()) {
-    pLed1->switchOn();
-  }
   Serial.println("The system will enter in sleep mode in 3 second...");
   Serial.println("3");
   delay(1000);
